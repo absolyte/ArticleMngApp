@@ -4,10 +4,10 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class ReviewRepository : IReviewRepository
     {
-
+         public List<Review> allReviewList; 
          public ReviewRepository()
         {
-            List<Review> allReviewList = new List<Review>();
+            allReviewList = new List<Review> ();
             allReviewList.Add(new Review(2, 0, "review for article with position 2 in list and rating value = 5", 5));
             allReviewList.Add(new Review(2, 1, "review for article with position 2 in list and rating value = 5", 5));
             allReviewList.Add(new Review(2, 2, "review for article with position 2 in list and rating value = 3", 3));
