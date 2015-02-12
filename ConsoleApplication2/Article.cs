@@ -9,16 +9,19 @@ namespace FLS.ArticleManager.ConsoleApplication2
         private string m_title;
         private string m_content;
         private int m_author;
-        public float AverageRating { get; set; }
-
+        private float m_averageRating;
+        
         public Article(int currentArticleId, string title, string content, int authorId)
         {
             this.m_currentArticleId = currentArticleId;
             this.m_title = title;
             this.m_content = content;
             this.m_author = authorId;
-            this.AverageRating = -1;
+            this.m_averageRating = -1;
+        }
 
+        public string getTitle() {
+            return this.m_title;
         }
 
     public int Get_currentArticleId()
@@ -28,7 +31,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
         
         public void ShowAverageRating()
         {
-        System.Console.WriteLine(this.AverageRating);
+        System.Console.WriteLine(this.m_averageRating);
         }
-    }
+     }
 }

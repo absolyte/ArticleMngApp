@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Runtime.InteropServices;
+using ConsoleApplication2;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
@@ -64,12 +65,25 @@ Consider indicating constraints placed on a type parameter in the name of parame
             //persons[0].FirstName = "Новое имя";
             // foreach (Article articleobj in AllArticlesList)
             //   Console.WriteLine(articleobj.ToString());
+                   
+            ArticleFacade articleFacade = new ArticleFacade();
+            ReviewFacade reviewFacade = new ReviewFacade();
+                            
+            ArticleRepository articleRepository1 = articleFacade.CreateArticles();
+            ReviewRepository reviewRepository1 = reviewFacade.CreateReviews();
 
-            ArticleFacade af = new ArticleFacade();
+            PrintReports printer1 = new PrintReports();
+           // articleFacade.PrintArticleTitles();
+
+            printer1.PrintArticleTitles(articleFacade, articleRepository1);
+
+
+            /*
             foreach (Article currentArticle in af.CreateArticles().GetAllArticles())
             {
                 currentArticle.ShowAverageRating();
             }
+             */
             Console.ReadLine();
         }
     }

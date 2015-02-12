@@ -11,10 +11,18 @@ namespace FLS.ArticleManager.ConsoleApplication2
             return articlesR;
         }
 
-        public void SetAverageRatingForAllArticles()
+        public void RefreshAverageRatingForAllArticles(List<Review> fullListOfReviews , List<Article> fullListOfArticles)
         {
         
         
+        }
+
+        public void PrintArticleTitles(ArticleRepository articleRepository1) 
+        {
+            foreach (Article articleToPrint in articleRepository1.GetAllArticles())
+            {
+                System.Console.WriteLine(articleToPrint.getTitle());
+            }
         }
 
         public float CalculateAverageRating(int IdArticleRatingToCalculate, List<Review> fullListOfReviews)
