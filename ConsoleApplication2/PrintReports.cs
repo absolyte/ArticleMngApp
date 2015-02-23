@@ -11,19 +11,21 @@ namespace FLS.ArticleManager.ConsoleApplication2
         {
             gettedArticleFacade.PrintArticleTitles(gettedArticleRepository);
         }
-   }
 
-}    
-        
-      /*  public void PrintAverageRatingForEveryArticle(List<Article> gettedListOfArticles, List<Review> gettedListOfReviews)
+        public void PrintAverageRatingForEveryArticle(ArticleFacade gettedArticleFacade, ArticleRepository gettedArticleRepository)
         {
-            foreach (Article articleToCalculateAverageRating in gettedListOfArticles)
-            {
-               // System.Console.WriteLine(articleToCalculateAverageRating.ShowAverageRating(articleToCalculateAverageRating.Get_currentArticleId(), gettedListOfReviews));
-            }
+                gettedArticleFacade.PrintAverageRating(gettedArticleRepository);
         }
 
-        // list of all Admin privilegies? 
+
+
+    }
+
+    
+        
+
+    }
+    // list of all Admin privilegies? 
 
         // list of commenters for a specified article? 
        /*  */

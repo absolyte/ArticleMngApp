@@ -28,7 +28,12 @@ namespace FLS.ArticleManager.ConsoleApplication2
         {
             return this.m_currentArticleId;
         }
-        
+
+        public void SetAverageRating(float averageRating)
+        {
+            this.m_averageRating = averageRating;
+        }
+
         public void ShowAverageRating()
         {
         System.Console.WriteLine(this.m_averageRating);
