@@ -68,15 +68,17 @@ Consider indicating constraints placed on a type parameter in the name of parame
                    
             ArticleFacade articleFacade = new ArticleFacade();
             ReviewFacade reviewFacade = new ReviewFacade();
-                            
+            CommentFacade commentFacade = new CommentFacade();
+            
             ArticleRepository articleRepository1 = articleFacade.CreateArticles();
             ReviewRepository reviewRepository1 = reviewFacade.CreateReviews();
+            CommentRepository commentRepository1 = commentFacade.CreateComments();
 
             PrintReports printer1 = new PrintReports();
            // articleFacade.PrintArticleTitles();
 
             printer1.PrintArticleTitles(articleFacade, articleRepository1);
-
+            
 
             /*
             foreach (Article currentArticle in af.CreateArticles().GetAllArticles())
