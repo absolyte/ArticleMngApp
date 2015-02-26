@@ -2,13 +2,23 @@
 {
     public class Admin : User, IPersonManager
     {
-        private bool m_isSleeping;
+        //private bool m_isSleeping;
         private float m_karma;
-        public string Privilegies { get; set; }
-        public string TypeOfUser(int userid)
+        //public Privilegies Privilegies { get; set; }
+
+        //public string TypeOfUser(int userid)
+        //{
+         //   return "Admin";
+        //}
+        
+          public Admin(int adminIdInList, string firstN, string lastN, int age)
         {
-            return "Admin";
+            this.m_currentUserId = adminIdInList;
+            this.m_firstN = firstN;
+            this.m_lastN = lastN;
+            this.m_age = age;
         }
+        
         public float CalculatedUserSpecificValue(int userid)
         {
             return m_karma;

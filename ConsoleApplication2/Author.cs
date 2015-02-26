@@ -2,20 +2,23 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class Author : User, IPersonManager
     {
-        //fields of "Athor"  user
-        //private int _currentAthrID; // ??? наверно не нужен.
         private float m_popularity;
         private string Nickname { get; set; }
-        //unique properties of "Author"
         private bool m_isWriting;
-
-        //propertie "TypeOfUser" of base class
         public string TypeOfUser(int userid)
         {
             return "Author";
-
         }
         //реализация метода "CalculateUserSpecificValue" базового класса
+
+        public Author(int authorIdInList, string firstN, string lastN, int age)
+        {
+            this.m_currentUserId = authorIdInList;
+            this.m_firstN = firstN;
+            this.m_lastN = lastN;
+            this.m_age = age;
+
+        }
 
         public float CalculatedUserSpecificValue(int userid)
         {
