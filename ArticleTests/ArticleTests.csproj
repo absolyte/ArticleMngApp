@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3CAE4419-89DA-4205-B8E1-AC0797F9AEF2}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{D0F94DD8-DE7E-49ED-A4CE-A71918CB24B2}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication2</RootNamespace>
-    <AssemblyName>ConsoleApplication2</AssemblyName>
+    <RootNamespace>ArticleTests</RootNamespace>
+    <AssemblyName>ArticleTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,44 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Admin.cs" />
-    <Compile Include="Repositories\AdminRepository.cs" />
-    <Compile Include="Classes\Article.cs" />
-    <Compile Include="Repositories\ArticleRepository.cs" />
-    <Compile Include="Classes\Author.cs" />
-    <Compile Include="Repositories\AuthorRepository.cs" />
-    <Compile Include="Classes\BaseComment.cs" />
-    <Compile Include="Classes\Comment.cs" />
-    <Compile Include="Classes\ArticleFacade.cs" />
-    <Compile Include="Classes\CommentFacade.cs" />
-    <Compile Include="Repositories\CommentRepository.cs" />
-    <Compile Include="Inerfaces\IAdminRepository.cs" />
-    <Compile Include="Inerfaces\IArticle.cs" />
-    <Compile Include="Inerfaces\IArticleRepository.cs" />
-    <Compile Include="Inerfaces\IAuthorRepository.cs" />
-    <Compile Include="Inerfaces\IBaseCommentGeneric.cs" />
-    <Compile Include="Inerfaces\ICommentRepository.cs" />
-    <Compile Include="Inerfaces\IPersonManager.cs" />
-    <Compile Include="Inerfaces\IReviewRepository.cs" />
-    <Compile Include="Inerfaces\IUserRepository.cs" />
-    <Compile Include="Inerfaces\IUserRepositoryGeneric.cs" />
-    <Compile Include="Inerfaces\IUserSpecificPropertieRepositoryGeneric.cs" />
-    <Compile Include="Inerfaces\IUserSpecificPropertiesGeneric.cs" />
-    <Compile Include="Classes\PrintReports.cs" />
-    <Compile Include="Classes\Privilegie.cs" />
-    <Compile Include="Classes\PrivilegieRepository.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Review.cs" />
-    <Compile Include="Classes\ReviewFacade.cs" />
-    <Compile Include="Repositories\ReviewRepository.cs" />
-    <Compile Include="Classes\User.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\ConsoleApplication2\ConsoleApplication2.csproj">
+      <Project>{3cae4419-89da-4205-b8e1-ac0797f9aef2}</Project>
+      <Name>ConsoleApplication2</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

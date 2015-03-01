@@ -6,10 +6,10 @@
         private float m_karma;
         //public Privilegies Privilegies { get; set; }
 
-        //public string TypeOfUser(int userid)
-        //{
-         //   return "Admin";
-        //}
+        public string TypeOfUser(int userid)
+        {
+        return "Admin";
+        }
         
           public Admin(int adminIdInList, string firstN, string lastN, int age)
         {

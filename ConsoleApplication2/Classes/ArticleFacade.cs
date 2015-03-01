@@ -63,7 +63,11 @@ namespace FLS.ArticleManager.ConsoleApplication2
             {
                 articleToPrintAverageRating.ShowAverageRating();
             }
-            
+        }
+
+        public static int Add(int a, int b)
+        {
+            return a + b;
         }
     }
 }
