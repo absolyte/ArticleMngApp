@@ -57,7 +57,8 @@ Consider indicating constraints placed on a type parameter in the name of parame
         static void Main(string[] args)
         {
            
-
+            Admin n = new Admin(0, "45", "444", 5);
+            Console.WriteLine(n.GetAge());
             //ArticleManager testAm = new ArticleManager();
             //testAM.printArticleTitles(AllArticlesList);
 

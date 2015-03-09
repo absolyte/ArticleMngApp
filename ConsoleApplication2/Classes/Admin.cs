@@ -1,27 +1,36 @@
-﻿namespace FLS.ArticleManager.ConsoleApplication2
+﻿using ConsoleApplication2.Classes;
+using ConsoleApplication2.Inerfaces;
+
+namespace FLS.ArticleManager.ConsoleApplication2
 {
-    public class Admin : User, IPersonManager
+    public class Admin : AbstractUser, IUserInterface
     {
         //private bool m_isSleeping;
-        private float m_karma;
+        private int m_karma;
         //public Privilegies Privilegies { get; set; }
 
-        public string TypeOfUser(int userid)
+        public string TypeOfUser()
         {
         return "Admin";
         }
         
-          public Admin(int adminIdInList, string firstN, string lastN, int age)
+        public Admin(int adminIdInList, string firstName, string lastName, int age)
         {
-            this.m_currentUserId = adminIdInList;
-            this.m_firstN = firstN;
-            this.m_lastN = lastN;
-            this.m_age = age;
+            this.SetCurrentUserId = adminIdInList;
+            this.SetFirstName = firstName;
+            this.SetLastName = lastName;
+            this.SetAge = age;
+            this.m_karma = age*100;
         }
-        
-        public float CalculatedUserSpecificValue(int userid)
+
+        public new int GetAge()
         {
-            return m_karma;
+            return this.m_karma;
+        }
+
+        public override float ReturnCalculatedUserSpecificValue()
+        {
+            return (float) m_karma;
         }
     }
 }

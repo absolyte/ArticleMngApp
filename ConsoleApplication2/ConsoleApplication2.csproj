@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AbstractUser.cs" />
     <Compile Include="Classes\Admin.cs" />
+    <Compile Include="Classes\IUserInterface.cs" />
     <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Classes\Article.cs" />
     <Compile Include="Repositories\ArticleRepository.cs" />
@@ -52,17 +54,16 @@
     <Compile Include="Classes\ArticleFacade.cs" />
     <Compile Include="Classes\CommentFacade.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
-    <Compile Include="Inerfaces\IAdminRepository.cs" />
-    <Compile Include="Inerfaces\IArticle.cs" />
-    <Compile Include="Inerfaces\IArticleRepository.cs" />
-    <Compile Include="Inerfaces\IAuthorRepository.cs" />
+    <Compile Include="Repositories\IAdminRepository.cs" />
+    <Compile Include="Classes\IArticle.cs" />
+    <Compile Include="Repositories\IArticleRepository.cs" />
+    <Compile Include="Repositories\IAuthorRepository.cs" />
     <Compile Include="Inerfaces\IBaseCommentGeneric.cs" />
-    <Compile Include="Inerfaces\ICommentRepository.cs" />
-    <Compile Include="Inerfaces\IPersonManager.cs" />
-    <Compile Include="Inerfaces\IReviewRepository.cs" />
-    <Compile Include="Inerfaces\IUserRepository.cs" />
-    <Compile Include="Inerfaces\IUserRepositoryGeneric.cs" />
-    <Compile Include="Inerfaces\IUserSpecificPropertieRepositoryGeneric.cs" />
+    <Compile Include="Repositories\ICommentRepository.cs" />
+    <Compile Include="Repositories\IReviewRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\IUserRepositoryGeneric.cs" />
+    <Compile Include="Repositories\IUserSpecificPropertieRepositoryGeneric.cs" />
     <Compile Include="Inerfaces\IUserSpecificPropertiesGeneric.cs" />
     <Compile Include="Classes\PrintReports.cs" />
     <Compile Include="Classes\Privilegie.cs" />
