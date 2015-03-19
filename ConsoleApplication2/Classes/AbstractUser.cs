@@ -3,52 +3,24 @@ namespace ConsoleApplication2.Classes
 {
     public abstract class AbstractUser
     {
-        private int m_currentUserId;
-        private int m_age;
-        private string m_firstName;
-        private string m_lastName;
+        public int CurrentUserId { get; protected set; }
+        public virtual int Age { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string LastName { get; protected set; }
 
-        public int GetCurrentUserId
+        public AbstractUser()
         {
-            get { return m_currentUserId; }
         }
 
-        protected int SetCurrentUserId
+        public AbstractUser(int userIdInList, string firstN, string lastN, int age)
         {
-            set { this.m_currentUserId = value; }
+            CurrentUserId = userIdInList;
+            FirstName = firstN;
+            LastName = lastN;
+            Age = age;
         }
 
-        public int GetAge
-        {
-            get { return m_age; }
-        }
+        public abstract float ReturnCalculatedUserSpecificValue();
 
-        protected int SetAge
-        {
-            set { this.m_age = value; }
-        }
-
-        public string GetFirstName
-        {
-            get { return m_firstName; }
-        }
-
-        protected string SetFirstName
-        {
-            set { this.m_firstName = value; }
-        }
-
-        public string GetLastName
-        {
-            get { return m_lastName; }
-        }
-
-        protected string SetLastName
-        {
-            set { this.m_lastName = value; }
-        }
-
-
-       public abstract float ReturnCalculatedUserSpecificValue();
-   }
+    }
 }

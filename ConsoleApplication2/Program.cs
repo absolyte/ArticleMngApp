@@ -79,8 +79,9 @@ Consider indicating constraints placed on a type parameter in the name of parame
            // articleFacade.PrintArticleTitles();
 
             printer1.PrintArticleTitles(articleFacade, articleRepository1);
-          articleFacade.RefreshAverageRatingForAllArticles(reviewRepository1, articleRepository1, articleFacade);
+            articleFacade.RefreshAverageRatingForAllArticles(reviewRepository1, articleRepository1, articleFacade);
             printer1.PrintAverageRatingForEveryArticle(articleFacade, articleRepository1);
+
 
             /*
             foreach (Article currentArticle in af.CreateArticles().GetAllArticles())

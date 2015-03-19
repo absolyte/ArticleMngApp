@@ -14,14 +14,25 @@ namespace FLS.ArticleManager.ConsoleApplication2
         return "Admin";
         }
         
+
+
         public Admin(int adminIdInList, string firstName, string lastName, int age)
+            : base(adminIdInList, firstName, lastName, age)
         {
-            this.SetCurrentUserId = adminIdInList;
-            this.SetFirstName = firstName;
-            this.SetLastName = lastName;
-            this.SetAge = age;
-            this.m_karma = age*100;
+           this.m_karma = age*100;
         }
+
+        public Admin(int adminIdInList, string firstName, string lastName, int age,int karma)
+            : this(adminIdInList, firstName, lastName, age)
+        {
+            this.m_karma = karma;
+        }
+
+        public override int Age
+        {
+            get { return m_karma; } 
+        }
+
 
         public new int GetAge()
         {

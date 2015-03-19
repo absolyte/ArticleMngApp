@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
@@ -8,6 +10,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
         
         public ArticleRepository()
         {
+            PrintReports.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             AllArticlesList = new List<Article>();
             AllArticlesList.Add(new Article(0, "title0", "content of article 0", 1));
             AllArticlesList.Add(new Article(1, "title1", "content of article 1", 2));
@@ -19,7 +22,32 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public List<Article> GetAllArticles()
         {
+            PrintReports.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             return AllArticlesList;
+        }
+
+        public Article GetArticleEntityById(int articleIdForSearch)
+        {
+            PrintReports.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            Article articleToReturn = new Article();
+            foreach (Article articleInList in this.GetAllArticles())
+            {
+                
+                if (articleInList.Get_currentArticleId() == articleIdForSearch)
+                {
+                    articleToReturn = articleInList;
+                    break;
+                }
+            }
+            return articleToReturn;
+        }
+
+        public Article GetRandomArticle()
+        {
+            PrintReports.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            Article articleToReturn = new Article();
+            Random rand = new Random();
+            return this.GetArticleEntityById(rand.Next(this.GetAllArticles().Count));
         }
     }
 }

@@ -5,16 +5,13 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class User : AbstractUser, IUserInterface
     {
-       public User()
-        {
-        }
-
+       
         public User(int userIdInList, string firstN, string lastN, int age)
         {
-            this.SetCurrentUserId = userIdInList;
-            this.SetFirstName = firstN;
-            this.SetLastName = lastN;
-            this.SetAge = age;
+            CurrentUserId  = userIdInList;
+            FirstName = firstN;
+            LastName = lastN;
+            Age = age;
         }
 
         public override float ReturnCalculatedUserSpecificValue()

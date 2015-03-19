@@ -12,16 +12,20 @@ namespace FLS.ArticleManager.ConsoleApplication2
        {
           return "Author";
        }
-       
-        public Author(int authorIdInList, string firstN, string lastN, int age)
-        {
-            this.SetCurrentUserId = authorIdInList;
-            this.SetFirstName = firstN;
-            this.SetLastName = lastN;
-            this.SetAge = age;
 
+       public Author()
+           
+       {
+
+       }
+
+        public Author(int authorIdInList, string firstN, string lastN, int age)
+           :this()
+        {
+        
         }
 
+     
         public override float ReturnCalculatedUserSpecificValue()
         {
             return m_popularity;

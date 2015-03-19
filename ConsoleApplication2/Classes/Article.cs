@@ -20,6 +20,10 @@ namespace FLS.ArticleManager.ConsoleApplication2
             this.m_averageRating = -1;
         }
 
+        public Article()
+        {
+         }
+
         public string getTitle() {
             return this.m_title;
         }
@@ -36,7 +40,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public void ShowAverageRating()
         {
-        System.Console.WriteLine(this.m_averageRating);
+            System.Console.WriteLine("Article {0} have average rating {1}", this.getTitle(), this.m_averageRating);
         }
      }
 }

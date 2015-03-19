@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using ConsoleApplication2;
 
 namespace FLS.ArticleManager.ConsoleApplication2
@@ -9,6 +10,8 @@ namespace FLS.ArticleManager.ConsoleApplication2
         private List<Review> AllReviewList; 
          public ReviewRepository()
         {
+            PrintReports.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+
             AllReviewList = new List<Review> ();
             AllReviewList.Add(new Review(2, 0, "review for article with position 2 in list and rating value = 5", 5));
             AllReviewList.Add(new Review(2, 1, "review for article with position 2 in list and rating value = 5", 5));

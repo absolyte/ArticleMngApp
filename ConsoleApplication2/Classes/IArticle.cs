@@ -3,5 +3,6 @@
     public interface IArticle
     {
         int Get_currentArticleId();
+        
     }
 }
