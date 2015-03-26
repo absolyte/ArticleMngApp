@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Classes\AbstractUser.cs" />
     <Compile Include="Classes\Admin.cs" />
+    <Compile Include="Classes\DiagnosticUtility.cs" />
     <Compile Include="Classes\IUserInterface.cs" />
+    <Compile Include="Classes\ManageUtility.cs" />
     <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Classes\Article.cs" />
     <Compile Include="Repositories\ArticleRepository.cs" />
@@ -62,7 +64,6 @@
     <Compile Include="Repositories\ICommentRepository.cs" />
     <Compile Include="Repositories\IReviewRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="Repositories\IUserRepositoryGeneric.cs" />
     <Compile Include="Repositories\IUserSpecificPropertieRepositoryGeneric.cs" />
     <Compile Include="Inerfaces\IUserSpecificPropertiesGeneric.cs" />
     <Compile Include="Classes\PrintReports.cs" />

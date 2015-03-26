@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Runtime.InteropServices;
 using ConsoleApplication2;
+using ConsoleApplication2.Classes;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
@@ -56,7 +57,6 @@ Consider indicating constraints placed on a type parameter in the name of parame
     {
         static void Main(string[] args)
         {
-           
             Admin n = new Admin(0, "45", "444", 5);
             Console.WriteLine(n.GetAge());
             //ArticleManager testAm = new ArticleManager();
@@ -67,20 +67,13 @@ Consider indicating constraints placed on a type parameter in the name of parame
             // foreach (Article articleobj in AllArticlesList)
             //   Console.WriteLine(articleobj.ToString());
                    
-            ArticleFacade articleFacade = new ArticleFacade();
-            ReviewFacade reviewFacade = new ReviewFacade();
-            CommentFacade commentFacade = new CommentFacade();
             
-            ArticleRepository articleRepository1 = articleFacade.CreateArticles();
-            ReviewRepository reviewRepository1 = reviewFacade.CreateReviews();
-            CommentRepository commentRepository1 = commentFacade.CreateComments();
-
             PrintReports printer1 = new PrintReports();
            // articleFacade.PrintArticleTitles();
 
-            printer1.PrintArticleTitles(articleFacade, articleRepository1);
-            articleFacade.RefreshAverageRatingForAllArticles(reviewRepository1, articleRepository1, articleFacade);
-            printer1.PrintAverageRatingForEveryArticle(articleFacade, articleRepository1);
+            printer1.PrintArticleTitles(ManageUtility.CreateArticleFacade(), ManageUtility.CreateArticleRepository());
+            //articleFacade.RefreshAverageRatingForAllArticles(reviewRepository1, articleRepository1, articleFacade);
+            //printer1.PrintAverageRatingForEveryArticle(articleFacade, articleRepository1);
 
 
             /*

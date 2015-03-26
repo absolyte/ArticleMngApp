@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleApplication2.Classes;
 using FLS.ArticleManager.ConsoleApplication2;
 
 namespace ConsoleApplication2
@@ -14,7 +15,7 @@ namespace ConsoleApplication2
         
         public AdminRepository()
         {
-            PrintReports.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             AllAdminsList = new List<Admin>();
             AllAdminsList.Add(new Admin(3, "Fedor", "Rybchikov", 20));
             AllAdminsList.Add(new Admin(4, "Ivan", "Carevich", 50));          

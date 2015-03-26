@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleApplication2.Classes;
 using FLS.ArticleManager.ConsoleApplication2;
 
 namespace ConsoleApplication2
@@ -14,7 +15,7 @@ namespace ConsoleApplication2
 
         public UserRepository()
         {
-            PrintReports.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
         AllUsersList = new List<User>();
         AllUsersList.Add(new User(5, "Broneslav", "Vryn", 48));
         AllUsersList.Add(new User(6, "User", "Userln", 30));
