@@ -18,8 +18,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
             AllArticlesList.Add(new Article(2, "title2", "content of article 2", 3));
             AllArticlesList.Add(new Article(3, "title3", "content of article 3", 3));
             AllArticlesList.Add(new Article(4, "title4", "content of article 4", 3));
-            //return allArticlesList;
-        }
+      }
 
         public List<Article> GetAllArticles()
         {

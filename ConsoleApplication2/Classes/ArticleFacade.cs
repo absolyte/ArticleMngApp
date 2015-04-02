@@ -7,29 +7,12 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class ArticleFacade
     {
-        public ArticleRepository CreateArticles()
-        {
-            ArticleRepository articlesR = new ArticleRepository();
-            return articlesR;
-        }
+        private ArticleRepository articleRepositoryUnit;
 
-        public void RefreshAverageRatingForAllArticles(ReviewRepository reviewRepository, ArticleRepository articleRepository, ArticleFacade gettedArticleFacade)
+        public ArticleFacade()
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            foreach (Article articleToRefreshRating in articleRepository.GetAllArticles())
-            {
-               articleToRefreshRating.SetAverageRating(gettedArticleFacade.CalculateAverageRating(articleToRefreshRating.Get_currentArticleId(),
-                    reviewRepository.GetAllEntitiesList()));
-            }
-        }
-
-        public void PrintArticleTitles(ArticleRepository articleRepository1) 
-        {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            foreach (Article articleToPrint in articleRepository1.GetAllArticles())
-            {
-                System.Console.WriteLine(articleToPrint.getTitle());
-            }
+            ArticleRepository ar = new ArticleRepository();
+            this.articleRepositoryUnit = ar;
         }
 
         public float CalculateAverageRating(int idArticleRatingToCalculate, List<Review> fullListOfReviews)
@@ -60,15 +43,9 @@ namespace FLS.ArticleManager.ConsoleApplication2
             }
         }
 
-
-
-        internal void PrintAverageRating(ArticleRepository gettedArticleRepository)
+        public List<Article> GetAllArticlesList()
         {
-            foreach (Article articleToPrintAverageRating in gettedArticleRepository.GetAllArticles())
-            {
-                articleToPrintAverageRating.ShowAverageRating();
-            }
-            Console.WriteLine("Specific average rating -1 means that rating not yet specified or calculated for this article. Please run articleFacade.RefreshAverageRatingForAllArticles method");
+           return articleRepositoryUnit.GetAllArticles();
         }
 
         public Article GetArticleById(int articleIdForSearch, ArticleRepository inputtedArticleRepository)

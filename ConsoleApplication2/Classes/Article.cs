@@ -24,7 +24,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
         {
          }
 
-        public string getTitle() {
+        public string GetTitle() {
             return this.m_title;
         }
 
@@ -40,7 +40,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public void ShowAverageRating()
         {
-            System.Console.WriteLine("Article {0} have average rating {1}", this.getTitle(), this.m_averageRating);
+            System.Console.WriteLine("Article {0} have average rating {1}", this.GetTitle(), this.m_averageRating);
         }
      }
 }

@@ -27,62 +27,21 @@ Do name generic type parameters with descriptive names, unless a single-letter n
 Consider using the letter T as the type parameter name for types with one single-letter type parameter. 
 Do prefix descriptive type parameter names with the letter T. 
 Consider indicating constraints placed on a type parameter in the name of parameter. For example, a parameter constrained to ISession may be called TSession. 
-
-     * 
-     
-     
      */
-
-
-    //public interface IRepository<T>
-    //{
-     //   IEnumerable<T> GetAll();
-      //  T GetByID(int id);
-       // void Add(T entity);
-       // void Update(T entity);
-       // void Delete(T entity);
-    //}
-
-    public interface IRepository<Article>
-    {
-        IEnumerable<Article> GetAll();
-        Article GetByID(int id);
-        //void Add(T entity);
-        //void Update(T entity);
-        //void Delete(T entity);
-    }
-
 
     class Program
     {
         static void Main(string[] args)
         {
-            Admin n = new Admin(0, "45", "444", 5);
-            Console.WriteLine(n.GetAge());
-            //ArticleManager testAm = new ArticleManager();
-            //testAM.printArticleTitles(AllArticlesList);
-
-            //testAm.Run();
-            //persons[0].FirstName = "Новое имя";
-            // foreach (Article articleobj in AllArticlesList)
-            //   Console.WriteLine(articleobj.ToString());
-                   
-            
             PrintReports printer1 = new PrintReports();
-           // articleFacade.PrintArticleTitles();
-
-            printer1.PrintArticleTitles(ManageUtility.CreateArticleFacade(), ManageUtility.CreateArticleRepository());
+            printer1.PrintArticleTitles();
+            printer1.PrintAverageRatingForEveryArticle();
+            printer1.RefreshAverageRating();
+            printer1.PrintAverageRatingForEveryArticle();
             //articleFacade.RefreshAverageRatingForAllArticles(reviewRepository1, articleRepository1, articleFacade);
             //printer1.PrintAverageRatingForEveryArticle(articleFacade, articleRepository1);
+            System.Console.ReadLine();
 
-
-            /*
-            foreach (Article currentArticle in af.CreateArticles().GetAllArticles())
-            {
-                currentArticle.ShowAverageRating();
-            }
-             */
-            Console.ReadLine();
         }
     }
 

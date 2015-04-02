@@ -3,15 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FLS.ArticleManager.ConsoleApplication2;
 
 namespace ConsoleApplication2
 {
-    class CommentFacade
+    public class CommentFacade
     {
-        public CommentRepository CreateComments()
+        private CommentRepository commentRepositoryUnit;
+
+        public CommentFacade()
         {
-            CommentRepository commentsR = new CommentRepository();
-            return commentsR;
+            CommentRepository commentRepository = new CommentRepository();
+            this.commentRepositoryUnit = commentRepository;
         }
+
+        public List<Comment> GetAllCommentsList()
+        {
+            return commentRepositoryUnit.GetAllEntitiesList();
+        }
+    
     }
+
+    
 }

@@ -24,12 +24,6 @@ namespace ConsoleApplication2
         AllCommentsList.Add(new Comment(4, 10, "content comment 10 article 4"));
         }
 
-
-      //  public List<Comment> GetAllComments()
-      //  {
-       //     return AllCommentsList;
-       // }
-
         public List<Comment> GetAllEntitiesList()
         {
             return AllCommentsList;

@@ -7,42 +7,65 @@ using FLS.ArticleManager.ConsoleApplication2;
 
 namespace ConsoleApplication2.Classes
 {
-    static class ManageUtility
+    public class ManageUtility
     {
-        public static ReviewFacade CreateReviewFacade()
-        {
-           ReviewFacade reviewFacade = new ReviewFacade();
-            return reviewFacade;
-        }
+        private ReviewFacade m_reviewFacade;
+        private CommentFacade m_commentFacade;
+        private ArticleFacade m_articleFacade;
+        private ReviewRepository m_reviewRepository;
+        private CommentRepository m_commentRepository;
+        private ArticleRepository m_articleRepository;
 
-        public static CommentFacade CreateCommentFacade()
+        public ManageUtility()
         {
+            ReviewFacade reviewFacade = new ReviewFacade();
+            this.m_reviewFacade = reviewFacade;
+
             CommentFacade commentFacade = new CommentFacade();
-            return commentFacade;
-        }
+            this.m_commentFacade = commentFacade;
 
-        public static ArticleFacade CreateArticleFacade()
-        {
             ArticleFacade articleFacade = new ArticleFacade();
-            return articleFacade;
-        }
+            this.m_articleFacade = articleFacade;
 
-        public static ReviewRepository CreateReviewRepository()
-        {
             ReviewRepository reviewRepository = new ReviewRepository();
-            return reviewRepository;
-        }
+            this.m_reviewRepository = reviewRepository;
 
-        public static CommentRepository CreateCommentRepository()
-        {
             CommentRepository commentRepository = new CommentRepository();
-            return commentRepository;
+            this.m_commentRepository = commentRepository;
+
+            ArticleRepository articleRepository = new ArticleRepository();
+            this.m_articleRepository = articleRepository;
         }
 
-        public static ArticleRepository CreateArticleRepository()
+        public ReviewFacade GetReviewFacadeUnit
         {
-            ArticleRepository articleRepository = new ArticleRepository();
-            return articleRepository;
+            get { return m_reviewFacade; }
+        }
+
+        public CommentFacade GetCommentFacadeUnit
+        {
+            get { return m_commentFacade; }
+        }
+
+        public ArticleFacade GetArticleFacadeUnit
+        {
+            get { return m_articleFacade; }
+        }
+
+        public ReviewRepository GetReviewRepositoryUnit
+        {
+            get { return m_reviewRepository; }
+        }
+
+        public CommentRepository GetCommentRepositoryUnit
+        {
+            get { return m_commentRepository; }
+        }
+
+        public ArticleRepository GetArticleRepositoryUnit
+        {
+            get { return m_articleRepository; }
         }
     }
+        
 }

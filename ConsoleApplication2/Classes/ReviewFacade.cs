@@ -7,12 +7,19 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication2
 {
-    class ReviewFacade
+    public class ReviewFacade
     {
-        public ReviewRepository CreateReviews()
+        private ReviewRepository reviewRepositoryUnit;
+
+        public ReviewFacade()
         {
-            ReviewRepository reviewsR = new ReviewRepository();
-            return reviewsR;
+            ReviewRepository rr = new ReviewRepository();
+            this.reviewRepositoryUnit = rr;
+        }
+
+        public List<Review> GetAllReviewsList()
+        {
+            return reviewRepositoryUnit.GetAllEntitiesList();
         }
     }
 }
