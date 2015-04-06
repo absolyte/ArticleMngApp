@@ -9,63 +9,36 @@ namespace ConsoleApplication2.Classes
 {
     public class ManageUtility
     {
-        private ReviewFacade m_reviewFacade;
-        private CommentFacade m_commentFacade;
-        private ArticleFacade m_articleFacade;
-        private ReviewRepository m_reviewRepository;
-        private CommentRepository m_commentRepository;
-        private ArticleRepository m_articleRepository;
+        private ReviewFacade _mReviewFacade;
+        private CommentFacade _mCommentFacade;
+        private ArticleFacade _mArticleFacade;
 
         public ManageUtility()
         {
             ReviewFacade reviewFacade = new ReviewFacade();
-            this.m_reviewFacade = reviewFacade;
+            this._mReviewFacade = reviewFacade;
 
             CommentFacade commentFacade = new CommentFacade();
-            this.m_commentFacade = commentFacade;
+            this._mCommentFacade = commentFacade;
 
             ArticleFacade articleFacade = new ArticleFacade();
-            this.m_articleFacade = articleFacade;
-
-            ReviewRepository reviewRepository = new ReviewRepository();
-            this.m_reviewRepository = reviewRepository;
-
-            CommentRepository commentRepository = new CommentRepository();
-            this.m_commentRepository = commentRepository;
-
-            ArticleRepository articleRepository = new ArticleRepository();
-            this.m_articleRepository = articleRepository;
+            this._mArticleFacade = articleFacade;
         }
 
         public ReviewFacade GetReviewFacadeUnit
         {
-            get { return m_reviewFacade; }
+            get { return _mReviewFacade; }
         }
 
         public CommentFacade GetCommentFacadeUnit
         {
-            get { return m_commentFacade; }
+            get { return _mCommentFacade; }
         }
 
         public ArticleFacade GetArticleFacadeUnit
         {
-            get { return m_articleFacade; }
+            get { return _mArticleFacade; }
         }
-
-        public ReviewRepository GetReviewRepositoryUnit
-        {
-            get { return m_reviewRepository; }
-        }
-
-        public CommentRepository GetCommentRepositoryUnit
-        {
-            get { return m_commentRepository; }
-        }
-
-        public ArticleRepository GetArticleRepositoryUnit
-        {
-            get { return m_articleRepository; }
-        }
-    }
+  }
         
 }

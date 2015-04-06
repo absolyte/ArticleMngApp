@@ -4,21 +4,21 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class Review : BaseComment
     {
-        private int m_ratingValue;
+        private int _mRatingValue;
         public int MRating
         {
-            get { return m_ratingValue; }
+            get { return _mRatingValue; }
             set
             {
                 if ( value > -1 && value < 5)
-                    m_ratingValue = value;
+                    _mRatingValue = value;
             }
         }
 
         public Review (int articleIdInList, int rewiewOrCommentIdInList, string content, int ratingValue)
         {
             this.ArticleIdInList = articleIdInList;
-            this.m_ratingValue = ratingValue;
+            this._mRatingValue = ratingValue;
             this.Content = content;
             this.RewiewOrCommentIdInList = rewiewOrCommentIdInList;
         }

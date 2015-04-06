@@ -9,17 +9,17 @@ namespace ConsoleApplication2
 {
     public class CommentFacade
     {
-        private CommentRepository commentRepositoryUnit;
+        private CommentRepository _commentRepositoryUnit;
 
         public CommentFacade()
         {
             CommentRepository commentRepository = new CommentRepository();
-            this.commentRepositoryUnit = commentRepository;
+            this._commentRepositoryUnit = commentRepository;
         }
 
         public List<Comment> GetAllCommentsList()
         {
-            return commentRepositoryUnit.GetAllEntitiesList();
+            return _commentRepositoryUnit.GetAllEntitiesList();
         }
     
     }

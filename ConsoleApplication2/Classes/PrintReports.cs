@@ -7,26 +7,26 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     class PrintReports
     {
-        private ManageUtility m_inMemoryManageUtilityUnit;
+        private ManageUtility _mInMemoryManageUtilityUnit;
         
         public PrintReports()
         {
-            this.m_inMemoryManageUtilityUnit = new ManageUtility();
+            this._mInMemoryManageUtilityUnit = new ManageUtility();
         }
 
         public void PrintArticleTitles()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            foreach (Article articleToPrint in m_inMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
+            foreach (Article articleToPrint in _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
             {
-                System.Console.WriteLine(articleToPrint.GetTitle());
+                System.Console.WriteLine(articleToPrint.Title);
             }
         }
 
         public void PrintAverageRatingForEveryArticle()
         {
                 DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-                foreach (Article articleToPrintAverageRating in m_inMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
+                foreach (Article articleToPrintAverageRating in _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
                 {
                     articleToPrintAverageRating.ShowAverageRating();
                 }
@@ -36,16 +36,28 @@ namespace FLS.ArticleManager.ConsoleApplication2
         public void RefreshAverageRating()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            foreach (Article articleToRefreshRating in m_inMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
+            foreach (Article articleToRefreshRating in _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
             {
-               articleToRefreshRating.SetAverageRating(m_inMemoryManageUtilityUnit.GetArticleFacadeUnit.CalculateAverageRating(articleToRefreshRating.Get_currentArticleId(),m_inMemoryManageUtilityUnit.GetReviewFacadeUnit.GetAllReviewsList()));
+               articleToRefreshRating.SetAverageRating(_mInMemoryManageUtilityUnit.GetArticleFacadeUnit.CalculateAverageRating(articleToRefreshRating.CurrentArticleId,_mInMemoryManageUtilityUnit.GetReviewFacadeUnit.GetAllReviewsList()));
             }
         }
 
-
-
-
+        public void ChangeArticles()
+        {
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(0, "title0", "content of article 0", 1);
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(50, "title0", "content of article 0", 1);
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(60, "title0", "content of article 0", 1);
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(70, "title0", "content of article 0", 1);
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(80, "title0", "content of article 0", 1);
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(80, "title0", "content of article 0", 1);
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(90, "title0", "content of article 0", 1);
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(55, "title0", "content of article 0", 1);
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(32, "title0", "content of article 0", 1);
         }
+
+
+
+    }
     
     }
    

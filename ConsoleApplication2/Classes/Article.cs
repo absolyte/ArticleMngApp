@@ -5,42 +5,45 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class Article : IArticle
     {
-        private int m_currentArticleId;
-        private string m_title;
-        private string m_content;
-        private int m_author;
-        private float m_averageRating;
+        private int _mCurrentArticleId;
+        private string _mTitle;
+        private string _mContent;
+        private int _mAuthor;
+        private float _mAverageRating;
         
         public Article(int currentArticleId, string title, string content, int authorId)
         {
-            this.m_currentArticleId = currentArticleId;
-            this.m_title = title;
-            this.m_content = content;
-            this.m_author = authorId;
-            this.m_averageRating = -1;
+            this.CurrentArticleId = currentArticleId;
+            this.Title = title;
+            this._mContent = content;
+            this._mAuthor = authorId;
+            this._mAverageRating = -1;
         }
 
         public Article()
         {
          }
 
-        public string GetTitle() {
-            return this.m_title;
+        public string Title
+        {
+            get { return this._mTitle; }
+            protected set { this._mTitle = value; }
         }
 
-    public int Get_currentArticleId()
+        public int CurrentArticleId
         {
-            return this.m_currentArticleId;
+            get { return this._mCurrentArticleId; }
+            protected set { this._mCurrentArticleId = value; }
         }
 
         public void SetAverageRating(float averageRating)
         {
-            this.m_averageRating = averageRating;
+            this._mAverageRating = averageRating;
         }
 
         public void ShowAverageRating()
         {
-            System.Console.WriteLine("Article {0} have average rating {1}", this.GetTitle(), this.m_averageRating);
+            System.Console.WriteLine("Article {0} have average rating {1}", this.Title, this._mAverageRating);
         }
      }
 }

@@ -7,12 +7,12 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class ArticleFacade
     {
-        private ArticleRepository articleRepositoryUnit;
+        private ArticleRepository _articleRepositoryUnit;
 
         public ArticleFacade()
         {
             ArticleRepository ar = new ArticleRepository();
-            this.articleRepositoryUnit = ar;
+            this._articleRepositoryUnit = ar;
         }
 
         public float CalculateAverageRating(int idArticleRatingToCalculate, List<Review> fullListOfReviews)
@@ -21,43 +21,46 @@ namespace FLS.ArticleManager.ConsoleApplication2
             int numberOfSuitableArticles = 0;
             int summaryRatingToCalculateAverageRating = 0;
             foreach (Review currentReview in fullListOfReviews)
-            {
-                if (currentReview.ArticleIdInList == idArticleRatingToCalculate)
                 {
-                    numberOfSuitableArticles += 1;
-                    summaryRatingToCalculateAverageRating += currentReview.MRating;
+                    if (currentReview.ArticleIdInList == idArticleRatingToCalculate)
+                    {
+                        numberOfSuitableArticles += 1;
+                        summaryRatingToCalculateAverageRating += currentReview.MRating;
+                    }
                 }
-                else
-                {
-                    //System.Console.WriteLine("skips article #" + currentReview.ArticleIdInList + "rating calculation due to insufficient number of article." + "current article to calculate average rating(which has been passed to calculation method) is #" + IdArticleRatingToCalculate);
-                }
-            }
             if (numberOfSuitableArticles == 0)
-            {
-                //System.Console.WriteLine("article to calculate average rating is #" + IdArticleRatingToCalculate + "this article don't have any reviews yet. calculation of average rating is unavailable");
-                return -1;
-            }
+                {
+                    //System.Console.WriteLine("article to calculate average rating is #" + IdArticleRatingToCalculate + "this article don't have any reviews yet. calculation of average rating is unavailable");
+                    return -1;
+                }
             else
-            {
-                return (float)summaryRatingToCalculateAverageRating / numberOfSuitableArticles;
-            }
+                {
+                    return (float)summaryRatingToCalculateAverageRating / numberOfSuitableArticles;
+                }   
         }
 
         public List<Article> GetAllArticlesList()
         {
-           return articleRepositoryUnit.GetAllArticles();
+           return _articleRepositoryUnit.GetAllArticles();
         }
 
-        public Article GetArticleById(int articleIdForSearch, ArticleRepository inputtedArticleRepository)
+        public Article GetArticleById(int articleIdForSearch)
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            return inputtedArticleRepository.GetArticleEntityById(articleIdForSearch);
+            return _articleRepositoryUnit.GetArticleEntityById(articleIdForSearch);
         }
 
-        public Article GetRandomArticle(ArticleRepository inputtedArticleRepository)
+        public Article GetRandomArticle()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            return inputtedArticleRepository.GetRandomArticle();
+            return _articleRepositoryUnit.GetRandomArticle();
+        }
+
+        public void AddArticleToDb(int currentArticleId, string title, string content, int authorId)
+        {
+            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+
+            _articleRepositoryUnit.AddNewArticle(currentArticleId, title, content, authorId);
         }
 
         public static int Add(int a, int b)

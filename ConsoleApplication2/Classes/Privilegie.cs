@@ -9,14 +9,14 @@ namespace ConsoleApplication2
 {
     public class Privilegie
     {
-        private int m_authorId;
-        private int m_privilegieIdInList;
+        private int _mAuthorId;
+        private int _mPrivilegieIdInList;
         public string Content;
 
         public Privilegie(int privilegieIdInList, int authorId, string content)
         {
-            this.m_privilegieIdInList = privilegieIdInList;
-            this.m_authorId = authorId;
+            this._mPrivilegieIdInList = privilegieIdInList;
+            this._mAuthorId = authorId;
             this.Content = content;
         }
     }

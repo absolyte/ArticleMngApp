@@ -7,47 +7,51 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class ArticleRepository : IArticleRepository
     {
-        public List<Article> AllArticlesList;
+        private List<Article> _allArticlesList;
         
         public ArticleRepository()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            AllArticlesList = new List<Article>();
-            AllArticlesList.Add(new Article(0, "title0", "content of article 0", 1));
-            AllArticlesList.Add(new Article(1, "title1", "content of article 1", 2));
-            AllArticlesList.Add(new Article(2, "title2", "content of article 2", 3));
-            AllArticlesList.Add(new Article(3, "title3", "content of article 3", 3));
-            AllArticlesList.Add(new Article(4, "title4", "content of article 4", 3));
+            _allArticlesList = new List<Article>();
+            _allArticlesList.Add(new Article(0, "title0", "content of article 0", 1));
+            _allArticlesList.Add(new Article(1, "title1", "content of article 1", 2));
+            _allArticlesList.Add(new Article(2, "title2", "content of article 2", 3));
+            _allArticlesList.Add(new Article(3, "title3", "content of article 3", 3));
+            _allArticlesList.Add(new Article(4, "title4", "content of article 4", 3));
       }
 
         public List<Article> GetAllArticles()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            return AllArticlesList;
+            return _allArticlesList;
         }
 
         public Article GetArticleEntityById(int articleIdForSearch)
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            Article articleToReturn = new Article();
-            foreach (Article articleInList in this.GetAllArticles())
-            {
-                
-                if (articleInList.Get_currentArticleId() == articleIdForSearch)
-                {
-                    articleToReturn = articleInList;
-                    break;
-                }
-            }
-            return articleToReturn;
+            return _allArticlesList.Find(article => article.CurrentArticleId.Equals(articleIdForSearch));
         }
 
         public Article GetRandomArticle()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            Article articleToReturn = new Article();
             Random rand = new Random();
             return this.GetArticleEntityById(rand.Next(this.GetAllArticles().Count));
         }
+
+        internal void AddNewArticle(int currentArticleId, string title, string content, int authorId)
+        {
+            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+
+            if (_allArticlesList.Exists(x => x.CurrentArticleId.Equals(currentArticleId)))
+            {
+                System.Console.WriteLine("Article with 'currentArticleId' = {0} already exists", currentArticleId);
+            }
+            else
+            {
+                _allArticlesList.Add(new Article(currentArticleId, title, content, authorId));
+            }
+        }
+        
     }
 }
