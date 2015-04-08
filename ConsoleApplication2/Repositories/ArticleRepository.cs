@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using ConsoleApplication2.Classes;
 
 namespace FLS.ArticleManager.ConsoleApplication2
@@ -11,13 +12,9 @@ namespace FLS.ArticleManager.ConsoleApplication2
         
         public ArticleRepository()
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+           // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             _allArticlesList = new List<Article>();
-            _allArticlesList.Add(new Article(0, "title0", "content of article 0", 1));
-            _allArticlesList.Add(new Article(1, "title1", "content of article 1", 2));
-            _allArticlesList.Add(new Article(2, "title2", "content of article 2", 3));
-            _allArticlesList.Add(new Article(3, "title3", "content of article 3", 3));
-            _allArticlesList.Add(new Article(4, "title4", "content of article 4", 3));
+            
       }
 
         public List<Article> GetAllArticles()
@@ -50,7 +47,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
             else
             {
                 _allArticlesList.Add(new Article(currentArticleId, title, content, authorId));
-                PrintReports.PrintMessage("Article with Id =" + currentArticleId + "sended to repository");
+               // PrintReports.PrintMessage("Article with Id =" + currentArticleId + "sended to repository");
             }
         }
 
@@ -67,6 +64,19 @@ namespace FLS.ArticleManager.ConsoleApplication2
             {
                 PrintReports.PrintMessage("Article with 'currentArticleId' =" + currentArticleId + "not founded. Delete procedure not started."); ;
             }
+
+            
+       
+
+        }
+      
+        public void InitializeRep()
+        {
+            _allArticlesList.Add(new Article(0, "title0", "content of article 0", 1));
+            _allArticlesList.Add(new Article(1, "title1", "content of article 1", 2));
+            _allArticlesList.Add(new Article(2, "title2", "content of article 2", 3));
+            _allArticlesList.Add(new Article(3, "title3", "content of article 3", 3));
+            _allArticlesList.Add(new Article(4, "title4", "content of article 4", 3));
         }
     }
 }

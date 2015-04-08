@@ -11,8 +11,12 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public ArticleFacade()
         {
-            ArticleRepository ar = new ArticleRepository();
-            this._articleRepositoryUnit = ar;
+           this._articleRepositoryUnit = new ArticleRepository();
+        }
+
+        public void InitializeData()
+        {
+            _articleRepositoryUnit.InitializeRep();
         }
 
         public float CalculateAverageRating(int idArticleRatingToCalculate, List<Review> fullListOfReviews)
@@ -46,7 +50,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public Article GetArticleById(int articleIdForSearch)
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            //DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             return _articleRepositoryUnit.GetArticleEntityById(articleIdForSearch);
         }
 
@@ -62,7 +66,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
             _articleRepositoryUnit.AddNewArticle(currentArticleId, title, content, authorId);
         }
 
-        public void DeleteArticleToDb(int currentArticleId)
+        public void DeleteArticleFromDb(int currentArticleId)
         {
             _articleRepositoryUnit.DeleteArticleWithId(currentArticleId);
         }

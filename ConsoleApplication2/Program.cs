@@ -34,6 +34,7 @@ Consider indicating constraints placed on a type parameter in the name of parame
         static void Main(string[] args)
         {
             PrintReports printer1 = new PrintReports();
+            printer1.Initialize();
             printer1.PrintArticleTitles();
             printer1.PrintAverageRatingForEveryArticle();
             printer1.RefreshAverageRating();

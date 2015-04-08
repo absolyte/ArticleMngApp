@@ -12,6 +12,19 @@ namespace FLS.ArticleManager.ConsoleApplication2
         private CommentFacade _mCommentFacade;
         private ArticleFacade _mArticleFacade;
 
+        public PrintReports()
+        {
+            this._mReviewFacade = new ReviewFacade();
+            this._mCommentFacade = new CommentFacade();
+            this._mArticleFacade = new ArticleFacade();
+        }
+
+        public void Initialize()
+        {
+            _mArticleFacade.InitializeData();
+        }
+
+
         public static void PrintMessage(string messageString)
         {
             Console.WriteLine(messageString);
@@ -22,12 +35,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
             Console.WriteLine("---------------------------------------\n");
         }
 
-        public PrintReports()
-        {
-            this._mReviewFacade = new ReviewFacade();
-            this._mCommentFacade = new CommentFacade();
-            this._mArticleFacade = new ArticleFacade();        
-        }
+        
 
         public ReviewFacade GetReviewFacadeUnit
         {
@@ -129,8 +137,8 @@ namespace FLS.ArticleManager.ConsoleApplication2
             GetArticleFacadeUnit.AddArticleToDb(70, "title0", "content of article 70", 1);
             GetArticleFacadeUnit.AddArticleToDb(80, "title0", "content of article 80", 1);
             PrintArticleTitlesAndContent();
-            GetArticleFacadeUnit.DeleteArticleToDb(80);
-            GetArticleFacadeUnit.DeleteArticleToDb(90);
+            GetArticleFacadeUnit.DeleteArticleFromDb(80);
+            GetArticleFacadeUnit.DeleteArticleFromDb(90);
             PrintArticleTitlesAndContent();
             GetArticleFacadeUnit.AddArticleToDb(80, "title5", "content of article2346234", 5);
             GetArticleFacadeUnit.AddArticleToDb(90, "title0", "content of article 90", 1);
@@ -139,6 +147,8 @@ namespace FLS.ArticleManager.ConsoleApplication2
             PrintArticleTitlesAndContent();
             GetArticleFacadeUnit.GetRandomArticle();
         }
+
+
 
 
 
