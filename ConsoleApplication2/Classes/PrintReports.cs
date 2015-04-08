@@ -1,24 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using ConsoleApplication2;
 using ConsoleApplication2.Classes;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
     class PrintReports
     {
-        private ManageUtility _mInMemoryManageUtilityUnit;
+        private ReviewFacade _mReviewFacade;
+        private CommentFacade _mCommentFacade;
+        private ArticleFacade _mArticleFacade;
+
         public static void PrintMessage(string messageString)
         {
             Console.WriteLine(messageString);
         }
+
         public static void PrintDelimiter()
         {
             Console.WriteLine("---------------------------------------\n");
         }
+
         public PrintReports()
         {
-            this._mInMemoryManageUtilityUnit = new ManageUtility();
+            this._mReviewFacade = new ReviewFacade();
+            this._mCommentFacade = new CommentFacade();
+            this._mArticleFacade = new ArticleFacade();        
+        }
+
+        public ReviewFacade GetReviewFacadeUnit
+        {
+            get { return _mReviewFacade; }
+        }
+
+        public CommentFacade GetCommentFacadeUnit
+        {
+            get { return _mCommentFacade; }
+        }
+
+        public ArticleFacade GetArticleFacadeUnit
+        {
+            get { return _mArticleFacade; }
         }
 
         public void PrintArticleTitles()
@@ -26,7 +49,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             PrintReports.PrintDelimiter();
             PrintReports.PrintMessage("Article Title\n");
-            foreach (Article articleToPrint in _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
+            foreach (Article articleToPrint in GetArticleFacadeUnit.GetAllArticlesList())
             {
                 PrintReports.PrintMessage(articleToPrint.Title);
             }
@@ -37,17 +60,17 @@ namespace FLS.ArticleManager.ConsoleApplication2
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             PrintReports.PrintDelimiter();
-            Article articleToPrint = _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList().Find(article => article.CurrentArticleId.Equals(idArticleToPrint));
+            Article articleToPrint = GetArticleFacadeUnit.GetAllArticlesList().Find(article => article.CurrentArticleId.Equals(idArticleToPrint));
             PrintReports.PrintMessage("Article Title    Article content\n");
             PrintReports.PrintMessage(articleToPrint.Title + "  " + articleToPrint.Content);
             PrintReports.PrintDelimiter();
         }
 
-        internal void PrintRandomArticle()
+        public void PrintRandomArticle()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             PrintReports.PrintDelimiter();
-            Article articleToPrint = _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetRandomArticle();
+            Article articleToPrint = GetArticleFacadeUnit.GetRandomArticle();
             if (articleToPrint == null)
             {
                 PrintReports.PrintMessage("no title with incoming random ID");
@@ -69,7 +92,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             PrintReports.PrintDelimiter();
             PrintReports.PrintMessage("Article Title    Article content\n");
-            foreach (Article articleToPrint in _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
+            foreach (Article articleToPrint in GetArticleFacadeUnit.GetAllArticlesList())
             {
                 PrintReports.PrintMessage(articleToPrint.Title + "          " + articleToPrint.Content);
             }
@@ -81,7 +104,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
                 DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
                 PrintReports.PrintDelimiter();
                 PrintReports.PrintMessage("Article Title    Article average rating\n");
-            foreach (Article articleToPrintAverageRating in _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
+            foreach (Article articleToPrintAverageRating in GetArticleFacadeUnit.GetAllArticlesList())
                 {
                     articleToPrintAverageRating.ShowAverageRating();
                 }
@@ -92,29 +115,29 @@ namespace FLS.ArticleManager.ConsoleApplication2
         public void RefreshAverageRating()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            foreach (Article articleToRefreshRating in _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
+            foreach (Article articleToRefreshRating in GetArticleFacadeUnit.GetAllArticlesList())
             {
-               articleToRefreshRating.SetAverageRating(_mInMemoryManageUtilityUnit.GetArticleFacadeUnit.CalculateAverageRating(articleToRefreshRating.CurrentArticleId,_mInMemoryManageUtilityUnit.GetReviewFacadeUnit.GetAllReviewsList()));
+               articleToRefreshRating.SetAverageRating(GetArticleFacadeUnit.CalculateAverageRating(articleToRefreshRating.CurrentArticleId,GetReviewFacadeUnit.GetAllReviewsList()));
             }
         }
 
         public void ChangeArticles()
         {
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(0, "title0", "content of article 0", 1);
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(50, "title0", "content of article 50", 1);
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(60, "title0", "content of article 60", 1);
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(70, "title0", "content of article 70", 1);
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(80, "title0", "content of article 80", 1);
+            GetArticleFacadeUnit.AddArticleToDb(0, "title0", "content of article 0", 1);
+           GetArticleFacadeUnit.AddArticleToDb(50, "title0", "content of article 50", 1);
+         GetArticleFacadeUnit.AddArticleToDb(60, "title0", "content of article 60", 1);
+            GetArticleFacadeUnit.AddArticleToDb(70, "title0", "content of article 70", 1);
+            GetArticleFacadeUnit.AddArticleToDb(80, "title0", "content of article 80", 1);
             PrintArticleTitlesAndContent();
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.DeleteArticleToDb(80);
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.DeleteArticleToDb(90);
+            GetArticleFacadeUnit.DeleteArticleToDb(80);
+            GetArticleFacadeUnit.DeleteArticleToDb(90);
             PrintArticleTitlesAndContent();
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(80, "title5", "content of article2346234", 5);
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(90, "title0", "content of article 90", 1);
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(55, "title0", "content of article 55", 1);
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(32, "title0", "content of article 32", 1);
+            GetArticleFacadeUnit.AddArticleToDb(80, "title5", "content of article2346234", 5);
+            GetArticleFacadeUnit.AddArticleToDb(90, "title0", "content of article 90", 1);
+            GetArticleFacadeUnit.AddArticleToDb(55, "title0", "content of article 55", 1);
+            GetArticleFacadeUnit.AddArticleToDb(32, "title0", "content of article 32", 1);
             PrintArticleTitlesAndContent();
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetRandomArticle();
+            GetArticleFacadeUnit.GetRandomArticle();
         }
 
 

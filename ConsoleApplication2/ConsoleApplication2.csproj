@@ -45,7 +45,6 @@
     <Compile Include="Classes\Admin.cs" />
     <Compile Include="Classes\DiagnosticUtility.cs" />
     <Compile Include="Classes\IUserInterface.cs" />
-    <Compile Include="Classes\ManageUtility.cs" />
     <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Classes\Article.cs" />
     <Compile Include="Repositories\ArticleRepository.cs" />
