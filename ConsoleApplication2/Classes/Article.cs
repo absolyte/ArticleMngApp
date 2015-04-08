@@ -15,7 +15,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
         {
             this.CurrentArticleId = currentArticleId;
             this.Title = title;
-            this._mContent = content;
+            this.Content = content;
             this._mAuthor = authorId;
             this._mAverageRating = -1;
         }
@@ -45,5 +45,11 @@ namespace FLS.ArticleManager.ConsoleApplication2
         {
             System.Console.WriteLine("Article {0} have average rating {1}", this.Title, this._mAverageRating);
         }
-     }
+
+        public string Content 
+        { 
+            get{ return this._mContent;} 
+            protected set{ this._mContent = value; }
+        }
+    }
 }

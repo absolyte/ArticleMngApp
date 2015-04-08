@@ -17,7 +17,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public float CalculateAverageRating(int idArticleRatingToCalculate, List<Review> fullListOfReviews)
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+          //  DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             int numberOfSuitableArticles = 0;
             int summaryRatingToCalculateAverageRating = 0;
             foreach (Review currentReview in fullListOfReviews)
@@ -58,9 +58,14 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public void AddArticleToDb(int currentArticleId, string title, string content, int authorId)
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+          //  DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
 
             _articleRepositoryUnit.AddNewArticle(currentArticleId, title, content, authorId);
+        }
+
+        public void DeleteArticleToDb(int currentArticleId)
+        {
+            _articleRepositoryUnit.DeleteArticleWithId(currentArticleId);
         }
 
         public static int Add(int a, int b)

@@ -22,36 +22,50 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public List<Article> GetAllArticles()
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+           // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             return _allArticlesList;
         }
 
         public Article GetArticleEntityById(int articleIdForSearch)
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+           // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             return _allArticlesList.Find(article => article.CurrentArticleId.Equals(articleIdForSearch));
         }
 
         public Article GetRandomArticle()
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+           // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             Random rand = new Random();
             return this.GetArticleEntityById(rand.Next(this.GetAllArticles().Count));
         }
 
         internal void AddNewArticle(int currentArticleId, string title, string content, int authorId)
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            //DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
 
             if (_allArticlesList.Exists(x => x.CurrentArticleId.Equals(currentArticleId)))
             {
-                System.Console.WriteLine("Article with 'currentArticleId' = {0} already exists", currentArticleId);
+                PrintReports.PrintMessage("Article with 'currentArticleId' =" + currentArticleId +"already exists");
             }
             else
             {
                 _allArticlesList.Add(new Article(currentArticleId, title, content, authorId));
             }
         }
-        
+
+
+        internal void DeleteArticleWithId(int currentArticleId)
+        {
+            if (_allArticlesList.Exists(x => x.CurrentArticleId.Equals(currentArticleId)))
+            {
+                PrintReports.PrintMessage("Article with 'currentArticleId' =" + currentArticleId + "founded. Delete procedure started.");
+                _allArticlesList.Remove(_allArticlesList.Find(article => article.CurrentArticleId.Equals(currentArticleId)));
+                PrintReports.PrintMessage("Article with 'currentArticleId' =" + currentArticleId + " deleted.");
+            }
+            else
+            {
+                PrintReports.PrintMessage("Article with 'currentArticleId' =" + currentArticleId + "not founded. Delete procedure not started."); ;
+            }
+        }
     }
 }

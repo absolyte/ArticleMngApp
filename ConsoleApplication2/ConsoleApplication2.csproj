@@ -68,7 +68,7 @@
     <Compile Include="Inerfaces\IUserSpecificPropertiesGeneric.cs" />
     <Compile Include="Classes\PrintReports.cs" />
     <Compile Include="Classes\Privilegie.cs" />
-    <Compile Include="Classes\PrivilegieRepository.cs" />
+    <Compile Include="Repositories\PrivilegieRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Review.cs" />

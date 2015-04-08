@@ -8,7 +8,10 @@ namespace FLS.ArticleManager.ConsoleApplication2
     class PrintReports
     {
         private ManageUtility _mInMemoryManageUtilityUnit;
-        
+        public static void PrintMessage(string messageString)
+        {
+            Console.WriteLine(messageString);
+        }
         public PrintReports()
         {
             this._mInMemoryManageUtilityUnit = new ManageUtility();
@@ -16,10 +19,24 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public void PrintArticleTitles()
         {
+            
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            PrintReports.PrintMessage("Article Title\n");
             foreach (Article articleToPrint in _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
             {
-                System.Console.WriteLine(articleToPrint.Title);
+                PrintReports.PrintMessage(articleToPrint.Title);
+                
+            }
+        }
+
+        public void PrintArticleTitlesAndContent()
+        {
+            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            PrintReports.PrintMessage("Article Title    Article content\n");
+            foreach (Article articleToPrint in _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.GetAllArticlesList())
+            {
+                PrintReports.PrintMessage(articleToPrint.Title + "          " + articleToPrint.Content);
+
             }
         }
 
@@ -49,7 +66,9 @@ namespace FLS.ArticleManager.ConsoleApplication2
             _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(60, "title0", "content of article 0", 1);
             _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(70, "title0", "content of article 0", 1);
             _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(80, "title0", "content of article 0", 1);
-            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(80, "title0", "content of article 0", 1);
+            PrintArticleTitlesAndContent();
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.DeleteArticleToDb(80);
+            _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(80, "title5", "content of article2346234", 5);
             _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(90, "title0", "content of article 0", 1);
             _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(55, "title0", "content of article 0", 1);
             _mInMemoryManageUtilityUnit.GetArticleFacadeUnit.AddArticleToDb(32, "title0", "content of article 0", 1);
