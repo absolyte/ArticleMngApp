@@ -58,8 +58,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public void AddArticleToDb(int currentArticleId, string title, string content, int authorId)
         {
-          //  DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-
+           // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             _articleRepositoryUnit.AddNewArticle(currentArticleId, title, content, authorId);
         }
 

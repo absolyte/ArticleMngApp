@@ -10,7 +10,7 @@ namespace ConsoleApplication2.Classes
     {
         public static void DiagnosticOutput(string nameOfStartedMethod, string nameOfClassWhichWeAreCurrentlyIn)
         {
-            Console.WriteLine("Method {0} started in class {1}." + "\n", nameOfStartedMethod, nameOfClassWhichWeAreCurrentlyIn);
+            Console.WriteLine("\nMethod {0} started in class {1}." + "\n", nameOfStartedMethod, nameOfClassWhichWeAreCurrentlyIn);
         }
     }
 }

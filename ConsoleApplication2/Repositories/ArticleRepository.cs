@@ -45,11 +45,12 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
             if (_allArticlesList.Exists(x => x.CurrentArticleId.Equals(currentArticleId)))
             {
-                PrintReports.PrintMessage("Article with 'currentArticleId' =" + currentArticleId +"already exists");
+                PrintReports.PrintMessage("Article with 'currentArticleId' =" + currentArticleId +"already exists. Operation cancelled.");
             }
             else
             {
                 _allArticlesList.Add(new Article(currentArticleId, title, content, authorId));
+                PrintReports.PrintMessage("Article with Id =" + currentArticleId + "sended to repository");
             }
         }
 
