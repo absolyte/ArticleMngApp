@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ArticleApp.Models.ArticleModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ArticleId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.articleTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.articleContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.articleAuthor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArticleId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.articleTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.articleContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.articleAuthor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ArticleId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ArticleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ArticleId })
+        </td>
+    </tr>
+}
+
+</table>
