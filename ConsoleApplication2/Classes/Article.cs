@@ -10,7 +10,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
         private string _mContent;
         private int _mAuthor;
         private float _mAverageRating;
-        
+
         public Article(int currentArticleId, string title, string content, int authorId)
         {
             this.CurrentArticleId = currentArticleId;
@@ -51,5 +51,6 @@ namespace FLS.ArticleManager.ConsoleApplication2
             get{ return this._mContent;} 
             protected set{ this._mContent = value; }
         }
+
+        }
     }
-}

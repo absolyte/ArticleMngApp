@@ -9,17 +9,22 @@ namespace ConsoleApplication2
 {
     public class ReviewFacade
     {
-        private ReviewRepository _reviewRepositoryUnit;
+        private ReviewRepository m_reviewRepositoryUnit;
 
         public ReviewFacade()
         {
             ReviewRepository rr = new ReviewRepository();
-            this._reviewRepositoryUnit = rr;
+            this.m_reviewRepositoryUnit = rr;
         }
 
         public List<Review> GetAllReviewsList()
         {
-            return _reviewRepositoryUnit.GetAllEntitiesList();
+            return m_reviewRepositoryUnit.GetAllEntitiesList();
+        }
+
+        internal void InitializeData()
+        {
+           m_reviewRepositoryUnit.InitializeRep();
         }
     }
 }

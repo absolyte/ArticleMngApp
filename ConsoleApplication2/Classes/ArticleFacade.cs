@@ -7,16 +7,16 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class ArticleFacade
     {
-        private ArticleRepository _articleRepositoryUnit;
+        private ArticleRepository m_ArticleRepositoryUnit;
 
         public ArticleFacade()
         {
-           this._articleRepositoryUnit = new ArticleRepository();
+           this.m_ArticleRepositoryUnit = new ArticleRepository();
         }
 
         public void InitializeData()
         {
-            _articleRepositoryUnit.InitializeRep();
+            m_ArticleRepositoryUnit.InitializeRep();
         }
 
         public float CalculateAverageRating(int idArticleRatingToCalculate, List<Review> fullListOfReviews)
@@ -45,30 +45,30 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public List<Article> GetAllArticlesList()
         {
-           return _articleRepositoryUnit.GetAllArticles();
+           return m_ArticleRepositoryUnit.GetAllArticles();
         }
 
         public Article GetArticleById(int articleIdForSearch)
         {
             //DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            return _articleRepositoryUnit.GetArticleEntityById(articleIdForSearch);
+            return m_ArticleRepositoryUnit.GetArticleEntityById(articleIdForSearch);
         }
 
         public Article GetRandomArticle()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            return _articleRepositoryUnit.GetRandomArticle();
+            return m_ArticleRepositoryUnit.GetRandomArticle();
         }
 
         public void AddArticleToDb(int currentArticleId, string title, string content, int authorId)
         {
            // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            _articleRepositoryUnit.AddNewArticle(currentArticleId, title, content, authorId);
+            m_ArticleRepositoryUnit.AddNewArticle(currentArticleId, title, content, authorId);
         }
 
         public void DeleteArticleFromDb(int currentArticleId)
         {
-            _articleRepositoryUnit.DeleteArticleWithId(currentArticleId);
+            m_ArticleRepositoryUnit.DeleteArticleWithId(currentArticleId);
         }
 
         public static int Add(int a, int b)

@@ -6,24 +6,28 @@ using ConsoleApplication2.Classes;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
-    class PrintReports
+   public class PrintReports
     {
-        private ReviewFacade _mReviewFacade;
-        private CommentFacade _mCommentFacade;
-        private ArticleFacade _mArticleFacade;
+        private ReviewFacade m_reviewFacade;
+        private CommentFacade m_commentFacade;
+        private ArticleFacade m_articleFacade;
+
+        public ReviewFacade GetReviewFacadeUnit
+        {
+            get { return m_reviewFacade; }
+        }
+
+        public CommentFacade GetCommentFacadeUnit
+        {
+            get { return m_commentFacade; }
+        }
 
         public PrintReports()
         {
-            this._mReviewFacade = new ReviewFacade();
-            this._mCommentFacade = new CommentFacade();
-            this._mArticleFacade = new ArticleFacade();
+            this.m_reviewFacade = new ReviewFacade();
+            this.m_commentFacade = new CommentFacade();
+            this.m_articleFacade = new ArticleFacade();
         }
-
-        public void Initialize()
-        {
-            _mArticleFacade.InitializeData();
-        }
-
 
         public static void PrintMessage(string messageString)
         {
@@ -35,21 +39,17 @@ namespace FLS.ArticleManager.ConsoleApplication2
             Console.WriteLine("---------------------------------------\n");
         }
 
-        
-
-        public ReviewFacade GetReviewFacadeUnit
+        public void Initialize()
         {
-            get { return _mReviewFacade; }
-        }
+            m_articleFacade.InitializeData();
+            m_commentFacade.InitializeData();
+            m_reviewFacade.InitializeData();
 
-        public CommentFacade GetCommentFacadeUnit
-        {
-            get { return _mCommentFacade; }
         }
 
         public ArticleFacade GetArticleFacadeUnit
         {
-            get { return _mArticleFacade; }
+            get { return m_articleFacade; }
         }
 
         public void PrintArticleTitles()
@@ -90,12 +90,9 @@ namespace FLS.ArticleManager.ConsoleApplication2
                 PrintReports.PrintMessage(articleToPrint.Title + "  " + articleToPrint.Content);
                 PrintReports.PrintDelimiter();
             }
-
-            
         }
 
-
-        public void PrintArticleTitlesAndContent()
+         public void PrintArticleTitlesAndContent()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             PrintReports.PrintDelimiter();
@@ -132,29 +129,62 @@ namespace FLS.ArticleManager.ConsoleApplication2
         public void ChangeArticles()
         {
             GetArticleFacadeUnit.AddArticleToDb(0, "title0", "content of article 0", 1);
-           GetArticleFacadeUnit.AddArticleToDb(50, "title0", "content of article 50", 1);
-         GetArticleFacadeUnit.AddArticleToDb(60, "title0", "content of article 60", 1);
-            GetArticleFacadeUnit.AddArticleToDb(70, "title0", "content of article 70", 1);
-            GetArticleFacadeUnit.AddArticleToDb(80, "title0", "content of article 80", 1);
+           GetArticleFacadeUnit.AddArticleToDb(50, "title50", "content of article 50", 1);
+         GetArticleFacadeUnit.AddArticleToDb(60, "title60", "content of article 60", 1);
+            GetArticleFacadeUnit.AddArticleToDb(70, "title70", "content of article 70", 1);
+            GetArticleFacadeUnit.AddArticleToDb(80, "title80", "content of article 80", 1);
             PrintArticleTitlesAndContent();
             GetArticleFacadeUnit.DeleteArticleFromDb(80);
             GetArticleFacadeUnit.DeleteArticleFromDb(90);
             PrintArticleTitlesAndContent();
-            GetArticleFacadeUnit.AddArticleToDb(80, "title5", "content of article2346234", 5);
-            GetArticleFacadeUnit.AddArticleToDb(90, "title0", "content of article 90", 1);
-            GetArticleFacadeUnit.AddArticleToDb(55, "title0", "content of article 55", 1);
-            GetArticleFacadeUnit.AddArticleToDb(32, "title0", "content of article 32", 1);
+            GetArticleFacadeUnit.AddArticleToDb(80, "title80", "content of article2346234", 5);
+            GetArticleFacadeUnit.AddArticleToDb(90, "title90", "content of article 90", 1);
+            GetArticleFacadeUnit.AddArticleToDb(55, "title55", "content of article 55", 1);
+            GetArticleFacadeUnit.AddArticleToDb(32, "title32", "content of article 32", 1);
             PrintArticleTitlesAndContent();
-            GetArticleFacadeUnit.GetRandomArticle();
+            GetCommentFacadeUnit.AddComment(70, "comment 1 to article with ID=70");
+            GetCommentFacadeUnit.AddComment(70, "comment 2 to article with ID=70");
+            GetCommentFacadeUnit.AddComment(70, "comment 3 to article with ID=70");
+            GetCommentFacadeUnit.AddComment(80, "comment 1 to article with ID=70");
+            }
+
+        public void PrintCommentsForArticleWithID(int articleIDForWhichToRetrieveComments)
+        {
+            //DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            PrintReports.PrintDelimiter();
+            if (GetArticleFacadeUnit.GetArticleById(articleIDForWhichToRetrieveComments) != null)
+            {
+                PrintReports.PrintMessage("Article Title=" + GetArticleFacadeUnit.GetArticleById(articleIDForWhichToRetrieveComments).Title);
+                int commentFlag = 0;
+                foreach (Comment commentToPrint in GetCommentFacadeUnit.GetAllCommentsList())
+                {
+                    if (commentToPrint.ArticleIdInList == articleIDForWhichToRetrieveComments)
+                    {
+                        commentFlag += 1;
+                        PrintReports.PrintMessage(commentToPrint.Content);
+                    }
+                 }
+                if (commentFlag == 0)
+                {
+                    PrintReports.PrintMessage("Article Title=" + GetArticleFacadeUnit.GetArticleById(articleIDForWhichToRetrieveComments).Title + "doesn't have comments");
+                }
+                PrintReports.PrintMessage("\n");
+            }
+            else
+            {
+                PrintReports.PrintMessage("Article with such incoming ID wasn't found");
+            }
+           PrintReports.PrintDelimiter();
+            
         }
 
-
-
-
-
-
-        
+       public void PrintCommentsForAllArticles()
+       {
+           foreach (Article articleToPrintComments in GetArticleFacadeUnit.GetAllArticlesList())
+           {
+               PrintCommentsForArticleWithID(articleToPrintComments.CurrentArticleId);
+           }
+       }
     }
     
-    }
-   
+}

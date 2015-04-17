@@ -4,23 +4,30 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class Review : BaseComment
     {
-        private int _mRatingValue;
+        private int m_RatingValue;
+        
         public int MRating
         {
-            get { return _mRatingValue; }
+            get { return m_RatingValue; }
             set
             {
                 if ( value > -1 && value < 5)
-                    _mRatingValue = value;
+                    m_RatingValue = value;
             }
         }
 
         public Review (int articleIdInList, int rewiewOrCommentIdInList, string content, int ratingValue)
         {
             this.ArticleIdInList = articleIdInList;
-            this._mRatingValue = ratingValue;
+            this.m_RatingValue = ratingValue;
             this.Content = content;
             this.RewiewOrCommentIdInList = rewiewOrCommentIdInList;
+        }
+
+        public Review(string content)
+        {
+            this.Content = content;
+            this.MRating = 0;
         }
 
         public override void GetEntityCode()

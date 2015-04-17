@@ -9,19 +9,29 @@ namespace ConsoleApplication2
 {
     public class CommentFacade
     {
-        private CommentRepository _commentRepositoryUnit;
+        private CommentRepository m_commentRepositoryUnit;
 
         public CommentFacade()
         {
             CommentRepository commentRepository = new CommentRepository();
-            this._commentRepositoryUnit = commentRepository;
+            this.m_commentRepositoryUnit = commentRepository;
         }
 
         public List<Comment> GetAllCommentsList()
         {
-            return _commentRepositoryUnit.GetAllEntitiesList();
+            return m_commentRepositoryUnit.GetAllEntitiesList();
         }
-    
+
+
+        internal void AddComment(int articleIdInList, string commentText)
+        {
+            m_commentRepositoryUnit.AddComment(articleIdInList, commentText);
+        }
+
+        internal void InitializeData()
+        {
+            m_commentRepositoryUnit.InitializeRep();
+        }
     }
 
     
