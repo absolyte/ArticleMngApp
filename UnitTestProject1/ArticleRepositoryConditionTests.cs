@@ -4,11 +4,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject1
 {
-   [TestClass]
+    using System.Collections.Generic;
+
+    [TestClass]
     public class ArticleRepositoryConditionTests
     {
        [TestMethod]
-       public void AddArticleToDbWithId80_RepositoryContainsArticleWithId80()
+       public void AddArticleToDbWithId80RepositoryContainsArticleWithId80()
        {
            // arrange
            ArticleFacade articleFacadeTest = new ArticleFacade();
@@ -19,7 +21,7 @@ namespace UnitTestProject1
        }
        
        [TestMethod]
-        public void GetArticleById_80_Returns_ArticleWithId80()
+        public void GetArticleById80ReturnsArticleWithId80()
         {
             // arrange
             ArticleFacade articleFacadeTest = new ArticleFacade();
@@ -31,7 +33,7 @@ namespace UnitTestProject1
         }
        
        [TestMethod]
-       public void DeleteArticleWithId80FromDb_RepositoryDoesntContainsArticleWithId80()
+       public void DeleteArticleWithId80FromDbRepositoryDoesntContainsArticleWithId80()
        {
            // arrange
            ArticleFacade articleFacadeTest = new ArticleFacade();
@@ -45,4 +47,59 @@ namespace UnitTestProject1
        
     }
 
-}
+
+   [TestClass]
+   public class ArticleFacadeBehaviourTests
+   {
+       [TestMethod]
+       public void CouldCallInitializeData()
+       {
+           // arrange
+           FakeRepository repositoryItemForTest = new FakeRepository();
+           FakeRepository.ArticleFacadeTesting target = new FakeRepository.ArticleFacadeTesting(repositoryItemForTest);
+           bool resultShouldBeTrue;
+
+           // act
+           target.InitializeData();
+
+           // assert
+           Assert.IsTrue(repositoryItemForTest.InitializeRepositoryIsCalled);
+       }
+
+
+   }
+
+    public class FakeRepository : IArticleRepository
+    {
+        public List<Article> Articles = new List<Article>();
+        public bool InitializeRepositoryIsCalled = false;
+
+        public List<Article> GetAllArticles()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InitializeRepository()
+        {
+            InitializeRepositoryIsCalled = true;
+        }
+
+        public class ArticleFacadeTesting : ArticleFacade
+        {
+            private ArticleRepository m_articleRepositoryUnit;
+            private IArticleRepository m_articleRepositoryUnitForTest; //DI member
+
+           //trying use DI
+            public ArticleFacadeTesting(IArticleRepository repository)
+            {
+                m_articleRepositoryUnitForTest = repository;
+            }
+
+            public new void InitializeData()
+            {
+                this.m_articleRepositoryUnitForTest.InitializeRepository();
+            }
+        }
+    }
+
+ }

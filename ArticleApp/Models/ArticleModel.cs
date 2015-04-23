@@ -12,15 +12,15 @@ namespace ArticleApp.Models
 
         [Required]
         [Display(Name = "Article title")]
-        public string articleTitle { get; set;}
+        public string ArticleTitle { get; set;}
 
         [Required]
         [Display(Name = "Article content")]
-        public string articleContent { get; set;}
+        public string ArticleContent { get; set;}
 
 
-        public int author { get; set; }
+        public int Author { get; set; }
 
-        public int articleAuthor { get; set; }
+        public int ArticleAuthor { get; set; }
     }
 }

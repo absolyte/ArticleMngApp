@@ -5,7 +5,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class Author : AbstractUser, IUserInterface
     {
-        private float _mPopularity;
+        private float m_mPopularity;
         private string Nickname { get; set; }
         
        public string TypeOfUser()
@@ -20,8 +20,8 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public float Popularity
         {
-            get { return _mPopularity;}
-            protected set { this._mPopularity = value; }
+            get { return this.m_mPopularity;}
+            protected set { this.m_mPopularity = value; }
         }
 
         public Author(int authorIdInList, string firstN, string lastN, int age)
@@ -33,7 +33,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
      
         public override float ReturnCalculatedUserSpecificValue()
         {
-            return _mPopularity;
+            return this.m_mPopularity;
         }
     }
 }

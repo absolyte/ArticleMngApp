@@ -148,17 +148,17 @@ namespace FLS.ArticleManager.ConsoleApplication2
             GetCommentFacadeUnit.AddComment(80, "comment 1 to article with ID=70");
             }
 
-        public void PrintCommentsForArticleWithID(int articleIDForWhichToRetrieveComments)
+        public void PrintCommentsForArticleWithId(int articleIdForWhichToRetrieveComments)
         {
             //DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             PrintReports.PrintDelimiter();
-            if (GetArticleFacadeUnit.GetArticleById(articleIDForWhichToRetrieveComments) != null)
+            if (GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveComments) != null)
             {
-                PrintReports.PrintMessage("Article Title=" + GetArticleFacadeUnit.GetArticleById(articleIDForWhichToRetrieveComments).Title);
+                PrintReports.PrintMessage("Article Title=" + GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveComments).Title);
                 int commentFlag = 0;
                 foreach (Comment commentToPrint in GetCommentFacadeUnit.GetAllCommentsList())
                 {
-                    if (commentToPrint.ArticleIdInList == articleIDForWhichToRetrieveComments)
+                    if (commentToPrint.ArticleIdInList == articleIdForWhichToRetrieveComments)
                     {
                         commentFlag += 1;
                         PrintReports.PrintMessage(commentToPrint.Content);
@@ -166,7 +166,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
                  }
                 if (commentFlag == 0)
                 {
-                    PrintReports.PrintMessage("Article Title=" + GetArticleFacadeUnit.GetArticleById(articleIDForWhichToRetrieveComments).Title + "doesn't have comments");
+                    PrintReports.PrintMessage("Article Title=" + GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveComments).Title + "doesn't have comments");
                 }
                 PrintReports.PrintMessage("\n");
             }
@@ -182,7 +182,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
        {
            foreach (Article articleToPrintComments in GetArticleFacadeUnit.GetAllArticlesList())
            {
-               PrintCommentsForArticleWithID(articleToPrintComments.CurrentArticleId);
+               this.PrintCommentsForArticleWithId(articleToPrintComments.CurrentArticleId);
            }
        }
     }

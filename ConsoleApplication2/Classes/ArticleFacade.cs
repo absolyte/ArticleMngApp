@@ -7,19 +7,26 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class ArticleFacade
     {
-        private ArticleRepository m_ArticleRepositoryUnit;
+        private ArticleRepository m_articleRepositoryUnit;
+       //private IArticleRepository m_articleRepositoryUnitForTest;   //DI member
 
         public ArticleFacade()
         {
-           this.m_ArticleRepositoryUnit = new ArticleRepository();
+           this.m_articleRepositoryUnit = new ArticleRepository();
         }
+
+        //trying use DI
+       // public ArticleFacade(IArticleRepository repository)
+       // {
+       //     m_articleRepositoryUnitForTest = repository;
+      //  }
 
         public void InitializeData()
         {
-            m_ArticleRepositoryUnit.InitializeRep();
+            this.m_articleRepositoryUnit.InitializeRepository();
         }
 
-        public float CalculateAverageRating(int idArticleRatingToCalculate, List<Review> fullListOfReviews)
+       public float CalculateAverageRating(int idArticleRatingToCalculate, List<Review> fullListOfReviews)
         {
           //  DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             int numberOfSuitableArticles = 0;
@@ -45,30 +52,30 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public List<Article> GetAllArticlesList()
         {
-           return m_ArticleRepositoryUnit.GetAllArticles();
+           return this.m_articleRepositoryUnit.GetAllArticles();
         }
 
         public Article GetArticleById(int articleIdForSearch)
         {
             //DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            return m_ArticleRepositoryUnit.GetArticleEntityById(articleIdForSearch);
+            return this.m_articleRepositoryUnit.GetArticleEntityById(articleIdForSearch);
         }
 
         public Article GetRandomArticle()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            return m_ArticleRepositoryUnit.GetRandomArticle();
+            return this.m_articleRepositoryUnit.GetRandomArticle();
         }
 
         public void AddArticleToDb(int currentArticleId, string title, string content, int authorId)
         {
            // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            m_ArticleRepositoryUnit.AddNewArticle(currentArticleId, title, content, authorId);
+            this.m_articleRepositoryUnit.AddNewArticle(currentArticleId, title, content, authorId);
         }
 
         public void DeleteArticleFromDb(int currentArticleId)
         {
-            m_ArticleRepositoryUnit.DeleteArticleWithId(currentArticleId);
+            this.m_articleRepositoryUnit.DeleteArticleWithId(currentArticleId);
         }
 
         public static int Add(int a, int b)

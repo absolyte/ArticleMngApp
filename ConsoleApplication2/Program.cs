@@ -47,8 +47,8 @@ Consider indicating constraints placed on a type parameter in the name of parame
             
             printer1.PrintCommentsForAllArticles();
             printer1.PrintArticleTitlesAndContent();
-            printer1.PrintCommentsForArticleWithID(71);
-            printer1.PrintCommentsForArticleWithID(70);
+            printer1.PrintCommentsForArticleWithId(71);
+            printer1.PrintCommentsForArticleWithId(70);
             //articleFacade.RefreshAverageRatingForAllArticles(reviewRepository1, articleRepository1, articleFacade);
             //printer1.PrintAverageRatingForEveryArticle(articleFacade, articleRepository1);
             System.Console.ReadLine();

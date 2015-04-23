@@ -4,7 +4,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class Comment : BaseComment
     {
-        private string commentText;
+        private string m_commentText;
         
         public Comment(int articleIdInList, int rewiewOrCommentIdInList, string content)
         {
@@ -15,7 +15,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public Comment(string commentText)
         {
-            this.commentText = commentText;
+            this.m_commentText = commentText;
         }
 
         public Comment(int articleIdInList, string commentText)
