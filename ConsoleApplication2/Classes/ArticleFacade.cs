@@ -7,7 +7,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 {
     public class ArticleFacade
     {
-        private ArticleRepository m_articleRepositoryUnit;
+        private IArticleRepository m_articleRepositoryUnit;
        //private IArticleRepository m_articleRepositoryUnitForTest;   //DI member
 
         public ArticleFacade()
@@ -16,10 +16,10 @@ namespace FLS.ArticleManager.ConsoleApplication2
         }
 
         //trying use DI
-       // public ArticleFacade(IArticleRepository repository)
-       // {
-       //     m_articleRepositoryUnitForTest = repository;
-      //  }
+        public ArticleFacade(IArticleRepository repository)
+        {
+            m_articleRepositoryUnit = repository;
+        }
 
         public void InitializeData()
         {

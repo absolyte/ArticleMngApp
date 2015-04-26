@@ -56,7 +56,7 @@ namespace UnitTestProject1
        {
            // arrange
            FakeRepository repositoryItemForTest = new FakeRepository();
-           FakeRepository.ArticleFacadeTesting target = new FakeRepository.ArticleFacadeTesting(repositoryItemForTest);
+           ArticleFacade target = new ArticleFacade(repositoryItemForTest);
            bool resultShouldBeTrue;
 
            // act
@@ -82,6 +82,26 @@ namespace UnitTestProject1
         public void InitializeRepository()
         {
             InitializeRepositoryIsCalled = true;
+        }
+
+        public Article GetRandomArticle()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddNewArticle(int currentArticleId, string title, string content, int authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteArticleWithId(int currentArticleId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Article GetArticleEntityById(int articleIdForSearch)
+        {
+            throw new NotImplementedException();
         }
 
         public class ArticleFacadeTesting : ArticleFacade
