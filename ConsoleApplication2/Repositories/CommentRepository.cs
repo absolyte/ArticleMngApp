@@ -4,7 +4,7 @@ using FLS.ArticleManager.ConsoleApplication2;
 namespace ConsoleApplication2
 {
    // public class CommentRepository : ICommentRepository
-    public class CommentRepository : IBaseCommentRepositoryGeneric<Comment>
+    public class CommentRepository : IEntityRepository<Comment>
     {
         private List<Comment> m_allCommentsList;
 
@@ -13,7 +13,7 @@ namespace ConsoleApplication2
         this.m_allCommentsList = new List<Comment>();
         }
 
-        public List<Comment> GetAllEntitiesList()
+        public List<Comment> GetAllEntities()
         {
             return this.m_allCommentsList;
         }
@@ -23,7 +23,7 @@ namespace ConsoleApplication2
             this.m_allCommentsList.Add(new Comment(articleIdInList, commentText));
         }
 
-        public void InitializeRep()
+        public void InitializeRepository()
         {
             this.m_allCommentsList.Add(new Comment(2, 0, "content comment 0 article 2"));
             this.m_allCommentsList.Add(new Comment(2, 1, "content comment 1 article 2"));
@@ -36,6 +36,26 @@ namespace ConsoleApplication2
             this.m_allCommentsList.Add(new Comment(3, 8, "content comment 8 article 3"));
             this.m_allCommentsList.Add(new Comment(4, 9, "content comment 9 article 4"));
             this.m_allCommentsList.Add(new Comment(4, 10, "content comment 10 article 4"));
+        }
+
+        public Comment GetRandomEntity()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddNewEntity(int currentEntityId, string title, string content, int authorId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteEntityWithId(int currentEntityId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Comment GetEntityById(int entityIdForSearch)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

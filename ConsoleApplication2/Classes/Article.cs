@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
-    public class Article : IArticle
+    public class Article
     {
         private int m_mCurrentArticleId;
         private string m_mTitle;

@@ -56,12 +56,8 @@
     <Compile Include="Classes\CommentFacade.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Classes\IAdminRepository.cs" />
-    <Compile Include="Classes\IArticle.cs" />
-    <Compile Include="Classes\IArticleRepository.cs" />
     <Compile Include="Classes\IAuthorRepository.cs" />
-    <Compile Include="Classes\IBaseCommentGeneric.cs" />
-    <Compile Include="Classes\ICommentRepository.cs" />
-    <Compile Include="Classes\IReviewRepository.cs" />
+    <Compile Include="Classes\IEntityRepository.cs" />
     <Compile Include="Classes\IUserRepository.cs" />
     <Compile Include="Classes\IUserSpecificPropertieRepositoryGeneric.cs" />
     <Compile Include="Classes\IUserSpecificPropertiesGeneric.cs" />

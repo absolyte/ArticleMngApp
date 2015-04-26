@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using ConsoleApplication2.Classes;
+using ConsoleApplication2;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
-    public class ArticleRepository : IArticleRepository
+    
+
+    public class ArticleRepository : IEntityRepository<Article>
     {
         private List<Article> m_allArticlesList;
         
@@ -17,26 +20,26 @@ namespace FLS.ArticleManager.ConsoleApplication2
             
       }
 
-        public List<Article> GetAllArticles()
+        public List<Article> GetAllEntities()
         {
            // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             return this.m_allArticlesList;
         }
 
-        public Article GetArticleEntityById(int articleIdForSearch)
+        public Article GetEntityById(int articleIdForSearch)
         {
            // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             return this.m_allArticlesList.Find(article => article.CurrentArticleId.Equals(articleIdForSearch));
         }
 
-        public Article GetRandomArticle()
+        public Article GetRandomEntity()
         {
            // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             Random rand = new Random();
-            return this.GetArticleEntityById(rand.Next(this.GetAllArticles().Count));
+            return this.GetEntityById(rand.Next(this.GetAllEntities().Count));
         }
 
-        public void AddNewArticle(int currentArticleId, string title, string content, int authorId)
+        public void AddNewEntity(int currentArticleId, string title, string content, int authorId)
         {
             //DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
 
@@ -52,7 +55,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
         }
 
 
-        public void DeleteArticleWithId(int currentArticleId)
+        public void DeleteEntityWithId(int currentArticleId)
         {
             if (this.m_allArticlesList.Exists(x => x.CurrentArticleId.Equals(currentArticleId)))
             {

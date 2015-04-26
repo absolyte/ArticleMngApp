@@ -5,8 +5,7 @@ using ConsoleApplication2.Classes;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
-    // public class ReviewRepository : IReviewRepository
-    public class ReviewRepository : IBaseCommentRepositoryGeneric<Review>
+    public class ReviewRepository : IEntityRepository<Review>
     {
         private List<Review> m_allReviewList; 
          public ReviewRepository()
@@ -17,11 +16,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
           
         }
 
-     //  public List<Review> GetAllReviews()
-      // {
-       //    return AllReviewList;
-      // }
-         public void InitializeRep()
+         public void InitializeRepository()
          {
              m_allReviewList.Add(new Review(2, 0, "review for article with position 2 in list and rating value = 5", 5));
              m_allReviewList.Add(new Review(2, 1, "review for article with position 2 in list and rating value = 5", 5));
@@ -34,7 +29,27 @@ namespace FLS.ArticleManager.ConsoleApplication2
              m_allReviewList.Add(new Review(4, 1, "review for article with position 4 in list and rating value = 5", 5));
          }
 
-       public List<Review> GetAllEntitiesList()
+        public Review GetRandomEntity()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddNewEntity(int currentEntityId, string title, string content, int authorId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteEntityWithId(int currentEntityId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Review GetEntityById(int entityIdForSearch)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Review> GetAllEntities()
        {
            return m_allReviewList;
        }

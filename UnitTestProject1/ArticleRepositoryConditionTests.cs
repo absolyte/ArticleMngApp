@@ -6,6 +6,8 @@ namespace UnitTestProject1
 {
     using System.Collections.Generic;
 
+    using ConsoleApplication2;
+
     [TestClass]
     public class ArticleRepositoryConditionTests
     {
@@ -66,10 +68,9 @@ namespace UnitTestProject1
            Assert.IsTrue(repositoryItemForTest.InitializeRepositoryIsCalled);
        }
 
+    }
 
-   }
-
-    public class FakeRepository : IArticleRepository
+    public class FakeRepository : IEntityRepository<Article>
     {
         public List<Article> Articles = new List<Article>();
         public bool InitializeRepositoryIsCalled = false;
@@ -79,9 +80,34 @@ namespace UnitTestProject1
             throw new NotImplementedException();
         }
 
+        public List<Article> GetAllEntities()
+        {
+            throw new NotImplementedException();
+        }
+
         public void InitializeRepository()
         {
             InitializeRepositoryIsCalled = true;
+        }
+
+        public Article GetRandomEntity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddNewEntity(int currentEntityId, string title, string content, int authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteEntityWithId(int currentEntityId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Article GetEntityById(int entityIdForSearch)
+        {
+            throw new NotImplementedException();
         }
 
         public Article GetRandomArticle()
@@ -104,22 +130,6 @@ namespace UnitTestProject1
             throw new NotImplementedException();
         }
 
-        public class ArticleFacadeTesting : ArticleFacade
-        {
-            private ArticleRepository m_articleRepositoryUnit;
-            private IArticleRepository m_articleRepositoryUnitForTest; //DI member
-
-           //trying use DI
-            public ArticleFacadeTesting(IArticleRepository repository)
-            {
-                m_articleRepositoryUnitForTest = repository;
-            }
-
-            public new void InitializeData()
-            {
-                this.m_articleRepositoryUnitForTest.InitializeRepository();
-            }
-        }
     }
 
  }

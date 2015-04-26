@@ -17,14 +17,14 @@ namespace ConsoleApplication2
             this.m_reviewRepositoryUnit = rr;
         }
 
-        public List<Review> GetAllReviewsList()
+        public List<Review> GetAllEntities()
         {
-            return m_reviewRepositoryUnit.GetAllEntitiesList();
+            return m_reviewRepositoryUnit.GetAllEntities();
         }
 
         internal void InitializeData()
         {
-           m_reviewRepositoryUnit.InitializeRep();
+           m_reviewRepositoryUnit.InitializeRepository();
         }
     }
 }

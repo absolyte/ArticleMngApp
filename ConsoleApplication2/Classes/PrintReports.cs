@@ -122,7 +122,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             foreach (Article articleToRefreshRating in GetArticleFacadeUnit.GetAllArticlesList())
             {
-               articleToRefreshRating.SetAverageRating(GetArticleFacadeUnit.CalculateAverageRating(articleToRefreshRating.CurrentArticleId,GetReviewFacadeUnit.GetAllReviewsList()));
+               articleToRefreshRating.SetAverageRating(GetArticleFacadeUnit.CalculateAverageRating(articleToRefreshRating.CurrentArticleId,GetReviewFacadeUnit.GetAllEntities()));
             }
         }
 

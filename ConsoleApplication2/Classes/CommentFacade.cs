@@ -19,7 +19,7 @@ namespace ConsoleApplication2
 
         public List<Comment> GetAllCommentsList()
         {
-            return m_commentRepositoryUnit.GetAllEntitiesList();
+            return m_commentRepositoryUnit.GetAllEntities();
         }
 
 
@@ -30,7 +30,7 @@ namespace ConsoleApplication2
 
         internal void InitializeData()
         {
-            m_commentRepositoryUnit.InitializeRep();
+            m_commentRepositoryUnit.InitializeRepository();
         }
     }
 
