@@ -68,9 +68,6 @@ namespace FLS.ArticleManager.ConsoleApplication2
                 PrintReports.PrintMessage("Article with 'currentArticleId' =" + currentArticleId + "not founded. Delete procedure not started."); ;
             }
 
-            
-       
-
         }
       
         public void InitializeRepository()

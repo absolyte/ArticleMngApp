@@ -64,7 +64,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public Article GetRandomArticle()
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            //DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
             return this.m_articleRepositoryUnit.GetRandomEntity();
         }
 
