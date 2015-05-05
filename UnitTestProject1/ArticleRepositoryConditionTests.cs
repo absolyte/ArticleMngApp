@@ -109,7 +109,7 @@ namespace UnitTestProject1
        {
            // arrange
            FakeRepository repositoryItemForTest = new FakeRepository();
-           ArticleFacade articleFacadeTest = new ArticleFacade();
+           ArticleFacade articleFacadeTest = new ArticleFacade(repositoryItemForTest);
            repositoryItemForTest.AddNewEntity(80, "titleTest", "content of test article", 4);
            
            // act
@@ -118,6 +118,24 @@ namespace UnitTestProject1
             // assert
            Assert.AreEqual(false, articleFacadeTest.GetAllArticlesList().Exists(x => x.CurrentArticleId.Equals(80)));
        }
+
+        [TestMethod]
+        public void RandomReturnsRandomValue()
+        {
+            // arrange
+            FakeRepository repositoryItemForTest = new FakeRepository();
+            ArticleFacade articleFacadeTest = new ArticleFacade(repositoryItemForTest);
+            repositoryItemForTest.AddNewEntity(1, "titleTest", "content of test article", 4);
+            repositoryItemForTest.AddNewEntity(2, "titleTest", "content of test article", 4);
+            repositoryItemForTest.AddNewEntity(3, "titleTest", "content of test article", 4);
+            repositoryItemForTest.AddNewEntity(4, "titleTest", "content of test article", 4);
+
+            // act
+            Article randomArticle = articleFacadeTest.GetRandomArticle();
+
+            // assert
+            Assert.AreEqual(randomArticle.CurrentArticleId,  articleFacadeTest.GetArticleById(repositoryItemForTest.returnRandomValueForTestPurposes()).CurrentArticleId);
+            }
 
     }
 
@@ -131,6 +149,12 @@ namespace UnitTestProject1
         public bool GetEntityByIdIsCalled = false;
         public bool DeleteEntityWithIdIsCalled = false;
 
+        public int returnRandomValueForTestPurposes()
+        {
+            return this.rand.Next(this.GetAllEntities().Count);
+        }
+
+    
         public List<Article> GetAllArticles()
         {
             return Articles;
@@ -181,16 +205,7 @@ namespace UnitTestProject1
             return Articles.Find(article => article.CurrentArticleId.Equals(entityIdForSearch));
         }
 
-        public Article GetRandomArticle()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddNewArticle(int currentArticleId, string title, string content, int authorId)
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public Article GetArticleEntityById(int articleIdForSearch)
         {
             throw new NotImplementedException();
