@@ -13,7 +13,7 @@ namespace UnitTestProject1
     {
 
         [TestMethod]
-        public void CouldCallInitializeData()
+        public void CouldCallInitializeDataTest()
         {
             // arrange
             FakeRepository repositoryItemForTest = new FakeRepository();
@@ -26,7 +26,7 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void AfterInitializeDataEndedRepositoryContainsItems()
+        public void AfterInitializeDataEndedRepositoryContainsItemsTest()
         {
             // arrange
             FakeRepository repositoryItemForTest = new FakeRepository();
@@ -38,7 +38,7 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void CouldCallAddNewEntity()
+        public void CouldCallAddNewEntityTest()
         {
             // arrange
             FakeRepository repositoryItemForTest = new FakeRepository();
@@ -52,7 +52,7 @@ namespace UnitTestProject1
         }
 
        [TestMethod]
-       public void AddArticleToDbWithId80RepositoryContainsArticleWithId80()
+        public void AddArticleToDbWithId80RepositoryContainsArticleWithId80Test()
        {
            // arrange
            FakeRepository repositoryItemForTest = new FakeRepository();
@@ -64,7 +64,7 @@ namespace UnitTestProject1
        }
 
         [TestMethod]
-       public void CouldCallGetEntityById()
+       public void CouldCallGetEntityByIdTest()
        {
            // arrange
            FakeRepository repositoryItemForTest = new FakeRepository();
@@ -78,7 +78,7 @@ namespace UnitTestProject1
        }
 
         [TestMethod]
-        public void GetArticleById80ReturnsArticleWithId80()
+        public void GetArticleById80ReturnsArticleWithId80Test()
         {
             // arrange
             FakeRepository repositoryItemForTest = new FakeRepository();
@@ -91,7 +91,7 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void CouldCallDeleteEntityById()
+        public void CouldCallDeleteEntityByIdTest()
         {
             // arrange
             FakeRepository repositoryItemForTest = new FakeRepository();
@@ -105,7 +105,7 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-       public void DeleteArticleWithId80FromDbRepositoryDoesntContainsArticleWithId80()
+        public void DeleteArticleWithId80FromDbRepositoryDoesntContainsArticleWithId80Test()
        {
            // arrange
            FakeRepository repositoryItemForTest = new FakeRepository();
@@ -120,21 +120,20 @@ namespace UnitTestProject1
        }
 
         [TestMethod]
-        public void RandomReturnsRandomValue()
+        public void RandomReturnsRandomValueTest()
         {
             // arrange
             FakeRepository repositoryItemForTest = new FakeRepository();
             ArticleFacade articleFacadeTest = new ArticleFacade(repositoryItemForTest);
-            repositoryItemForTest.AddNewEntity(1, "titleTest", "content of test article", 4);
-            repositoryItemForTest.AddNewEntity(2, "titleTest", "content of test article", 4);
-            repositoryItemForTest.AddNewEntity(3, "titleTest", "content of test article", 4);
-            repositoryItemForTest.AddNewEntity(4, "titleTest", "content of test article", 4);
-
+           repositoryItemForTest.InitializeRepository();
             // act
             Article randomArticle = articleFacadeTest.GetRandomArticle();
-
+            System.Console.WriteLine(repositoryItemForTest.GetEntityById(0).CurrentArticleId);
+            System.Console.WriteLine(repositoryItemForTest.GetEntityById(1).CurrentArticleId);
+            System.Console.WriteLine(repositoryItemForTest.GetEntityById(2).CurrentArticleId);
+            System.Console.WriteLine(repositoryItemForTest.GetEntityById(3).CurrentArticleId);
             // assert
-            Assert.AreEqual(randomArticle.CurrentArticleId,  articleFacadeTest.GetArticleById(repositoryItemForTest.returnRandomValueForTestPurposes()).CurrentArticleId);
+            Assert.AreEqual(randomArticle.CurrentArticleId,  articleFacadeTest.GetArticleById(repositoryItemForTest.ReturnRandomValueForTestPurposes()).CurrentArticleId);
             }
 
     }
@@ -142,16 +141,18 @@ namespace UnitTestProject1
     public class FakeRepository : IEntityRepository<Article>
     {
         public List<Article> Articles = new List<Article>();
-
-        private Random rand = null;
+        
         public bool InitializeRepositoryIsCalled = false;
         public bool AddNewEntityIsCalled = false;
         public bool GetEntityByIdIsCalled = false;
         public bool DeleteEntityWithIdIsCalled = false;
 
-        public int returnRandomValueForTestPurposes()
+        private Random m_rand = new Random();
+        private Random m_rand1 = new Random();
+
+        public int ReturnRandomValueForTestPurposes()
         {
-            return this.rand.Next(this.GetAllEntities().Count);
+            return this.m_rand1.Next(this.GetAllEntities().Count);
         }
 
     
@@ -163,8 +164,12 @@ namespace UnitTestProject1
         public void InitializeRepository()
         {
             InitializeRepositoryIsCalled = true;
-           Articles.Add(new Article(0, "title0", "content of article 0", 1));
-        }
+            Articles.Add(new Article(0, "titleTest", "content of test article", 4));
+            Articles.Add(new Article(1, "titleTest", "content of test article", 4));
+            Articles.Add(new Article(2, "titleTest", "content of test article", 4));
+            Articles.Add(new Article(3, "titleTest", "content of test article", 4));
+
+          }
 
         public List<Article> GetAllEntities()
         {
@@ -173,8 +178,7 @@ namespace UnitTestProject1
 
         public Article GetRandomEntity()
         {
-            rand = new Random();
-            return this.GetEntityById(rand.Next(this.GetAllEntities().Count));
+            return this.GetEntityById(this.m_rand.Next(this.GetAllEntities().Count));
         }
 
         public void AddNewEntity(int currentEntityId, string title, string content, int authorId)
