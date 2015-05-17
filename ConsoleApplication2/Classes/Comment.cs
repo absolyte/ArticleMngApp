@@ -13,6 +13,15 @@ namespace FLS.ArticleManager.ConsoleApplication2
             this.RewiewOrCommentIdInList = rewiewOrCommentIdInList;
         }
 
+        public Comment(int articleIdInList, int rewiewOrCommentIdInList, int idCommentAuthor, string userTag, string content)
+        {
+            this.ArticleIdInList = articleIdInList;
+            this.Content = content;
+            this.RewiewOrCommentIdInList = rewiewOrCommentIdInList;
+            this.userFlag = userTag;
+            this.userId = idCommentAuthor;
+        }
+
         public Comment(string commentText)
         {
             this.m_commentText = commentText;

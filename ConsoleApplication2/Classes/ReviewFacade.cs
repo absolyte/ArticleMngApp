@@ -22,7 +22,7 @@ namespace ConsoleApplication2
             return m_reviewRepositoryUnit.GetAllEntities();
         }
 
-        internal void InitializeData()
+        public void InitializeData()
         {
            m_reviewRepositoryUnit.InitializeRepository();
         }

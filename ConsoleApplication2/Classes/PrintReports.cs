@@ -11,6 +11,9 @@ namespace FLS.ArticleManager.ConsoleApplication2
         private ReviewFacade m_reviewFacade;
         private CommentFacade m_commentFacade;
         private ArticleFacade m_articleFacade;
+        private AdminFacade m_adminFacade;
+        private UserFacade m_userFacade;
+        private AuthorFacade m_authorFacade;
 
         public ReviewFacade GetReviewFacadeUnit
         {
@@ -27,6 +30,10 @@ namespace FLS.ArticleManager.ConsoleApplication2
             this.m_reviewFacade = new ReviewFacade();
             this.m_commentFacade = new CommentFacade();
             this.m_articleFacade = new ArticleFacade();
+
+            m_adminFacade = new AdminFacade();
+            m_authorFacade = new AuthorFacade();
+            m_userFacade = new UserFacade();
         }
 
         public static void PrintMessage(string messageString)
@@ -44,6 +51,9 @@ namespace FLS.ArticleManager.ConsoleApplication2
             m_articleFacade.InitializeData();
             m_commentFacade.InitializeData();
             m_reviewFacade.InitializeData();
+            m_adminFacade.InitializeData();
+            m_authorFacade.InitializeData();
+            m_userFacade.InitializeData();
 
         }
 
@@ -129,8 +139,8 @@ namespace FLS.ArticleManager.ConsoleApplication2
         public void ChangeArticles()
         {
             GetArticleFacadeUnit.AddArticleToDb(0, "title0", "content of article 0", 1);
-           GetArticleFacadeUnit.AddArticleToDb(50, "title50", "content of article 50", 1);
-         GetArticleFacadeUnit.AddArticleToDb(60, "title60", "content of article 60", 1);
+            GetArticleFacadeUnit.AddArticleToDb(50, "title50", "content of article 50", 1);
+            GetArticleFacadeUnit.AddArticleToDb(60, "title60", "content of article 60", 1);
             GetArticleFacadeUnit.AddArticleToDb(70, "title70", "content of article 70", 1);
             GetArticleFacadeUnit.AddArticleToDb(80, "title80", "content of article 80", 1);
             PrintArticleTitlesAndContent();
@@ -142,10 +152,10 @@ namespace FLS.ArticleManager.ConsoleApplication2
             GetArticleFacadeUnit.AddArticleToDb(55, "title55", "content of article 55", 1);
             GetArticleFacadeUnit.AddArticleToDb(32, "title32", "content of article 32", 1);
             PrintArticleTitlesAndContent();
-            GetCommentFacadeUnit.AddComment(70, "comment 1 to article with ID=70");
-            GetCommentFacadeUnit.AddComment(70, "comment 2 to article with ID=70");
-            GetCommentFacadeUnit.AddComment(70, "comment 3 to article with ID=70");
-            GetCommentFacadeUnit.AddComment(80, "comment 1 to article with ID=70");
+
+            GetCommentFacadeUnit.AddComment(70, 11, 3, "Admin", "comment by admin fedor ryabchikov to article 70");
+            GetCommentFacadeUnit.AddComment(70, 12, 0, "Author", "comment by author ivan suslikov to article 70");
+            GetCommentFacadeUnit.AddComment(70, 13, 5, "User", "comment by user broneslav Vryn to article 70");      
             }
 
         public void PrintCommentsForArticleWithId(int articleIdForWhichToRetrieveComments)
@@ -172,11 +182,51 @@ namespace FLS.ArticleManager.ConsoleApplication2
             }
             else
             {
-                PrintReports.PrintMessage("Article with such incoming ID wasn't found");
+                System.Console.WriteLine("Article with incoming ID={0} wasn't found", articleIdForWhichToRetrieveComments);
             }
            PrintReports.PrintDelimiter();
             
         }
+
+        public void PrintAllCommentersForSpecifiedArticle(int articleIdForWhichToRetrieveCommenters)
+       {
+           //DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+           PrintReports.PrintDelimiter();
+           PrintReports.PrintMessage(MethodBase.GetCurrentMethod().Name);
+           if (GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveCommenters) != null)
+           {
+               PrintReports.PrintMessage("Article Title=" + GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveCommenters).Title);
+               
+               foreach (Comment commentToGetCommenters in GetCommentFacadeUnit.GetAllCommentsList())
+               {
+                   if (commentToGetCommenters.ArticleIdInList == articleIdForWhichToRetrieveCommenters)
+                   {
+                       if (commentToGetCommenters.userFlag == "Admin")
+                       {
+                           System.Console.WriteLine(this.m_adminFacade.GetAdminById(commentToGetCommenters.userId).FirstName + "\n" + this.m_adminFacade.GetAdminById(commentToGetCommenters.userId).LastName);
+                       }
+
+                      if (commentToGetCommenters.userFlag == "Author")
+                      {
+                           System.Console.WriteLine(this.m_authorFacade.GetAuthorById(commentToGetCommenters.userId).FirstName + "\n" + this.m_authorFacade.GetAuthorById(commentToGetCommenters.userId).LastName);
+                       }
+                   
+                       if (commentToGetCommenters.userFlag == "User")
+                       {
+                           System.Console.WriteLine(this.m_userFacade.GetUserById(commentToGetCommenters.userId).FirstName + "\n" + this.m_userFacade.GetUserById(commentToGetCommenters.userId).LastName);
+                       }
+
+                   }
+               }
+              }
+           else
+           {
+               System.Console.WriteLine("Article with incoming ID={0} wasn't found", articleIdForWhichToRetrieveCommenters);
+           }
+           PrintReports.PrintDelimiter();
+
+       }
+
 
        public void PrintCommentsForAllArticles()
        {

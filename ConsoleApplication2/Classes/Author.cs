@@ -7,15 +7,18 @@ namespace FLS.ArticleManager.ConsoleApplication2
     {
         private float m_mPopularity;
         private string Nickname { get; set; }
-        
+
+        public Author(int authorIdInList, string firstN, string lastN, int age)
+        {
+            this.CurrentUserId = authorIdInList;
+            this.FirstName = firstN;
+            this.LastName = lastN;
+            this.Age = age;
+        }
+
        public string TypeOfUser()
        {
           return "Author";
-       }
-
-       public Author()
-       {
-
        }
 
         public float Popularity
@@ -24,13 +27,6 @@ namespace FLS.ArticleManager.ConsoleApplication2
             protected set { this.m_mPopularity = value; }
         }
 
-        public Author(int authorIdInList, string firstN, string lastN, int age)
-           :this()
-        {
-        
-        }
-
-     
         public override float ReturnCalculatedUserSpecificValue()
         {
             return this.m_mPopularity;

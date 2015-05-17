@@ -15,15 +15,39 @@ namespace ConsoleApplication2
         
         public AdminRepository()
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            AllAdminsList = new List<Admin>();
-            AllAdminsList.Add(new Admin(3, "Fedor", "Rybchikov", 20));
-            AllAdminsList.Add(new Admin(4, "Ivan", "Carevich", 50));          
+            this.AllAdminsList = new List<Admin>();
+                
         }
 
-        public List<Admin> GetAllUserList()
+        public List<Admin> GetAllEntities()
         {
-            return AllAdminsList;
+            return this.AllAdminsList;
+        }
+
+        public void InitializeRepository()
+        {
+            this.AllAdminsList.Add(new Admin(3, "Fedor", "Rybchikov", 20));
+            this.AllAdminsList.Add(new Admin(4, "Ivan", "Carevich", 50));      
+        }
+
+        public Admin GetRandomUserEntity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddNewUserEntity(int currentEntityId, string title, string content, int authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteUserEntityWithId(int currentEntityId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Admin GetUserEntityById(int entityIdForSearch)
+        {
+            return this.AllAdminsList.Find(admin => admin.CurrentUserId.Equals(entityIdForSearch));
         }
     }
 }

@@ -43,8 +43,11 @@
   <ItemGroup>
     <Compile Include="Classes\AbstractUser.cs" />
     <Compile Include="Classes\Admin.cs" />
+    <Compile Include="Classes\AdminFacade.cs" />
+    <Compile Include="Classes\AuthorFacade.cs" />
     <Compile Include="Classes\DiagnosticUtility.cs" />
     <Compile Include="Classes\IUserInterface.cs" />
+    <Compile Include="Classes\UserFacade.cs" />
     <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Classes\Article.cs" />
     <Compile Include="Repositories\ArticleRepository.cs" />

@@ -15,15 +15,40 @@ namespace ConsoleApplication2
 
         public UserRepository()
         {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-        AllUsersList = new List<User>();
-        AllUsersList.Add(new User(5, "Broneslav", "Vryn", 48));
-        AllUsersList.Add(new User(6, "User", "Userln", 30));
+          //  DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+            this.AllUsersList = new List<User>();
+        
         }
 
-        public List<User> GetAllUserList()
+        public List<User> GetAllEntities()
         {
-            return AllUsersList;
+            return this.AllUsersList;
+        }
+
+        public void InitializeRepository()
+        {
+            this.AllUsersList.Add(new User(5, "Broneslav", "Vryn", 48));
+            this.AllUsersList.Add(new User(6, "User", "Userln", 30));
+        }
+
+        public User GetRandomUserEntity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddNewUserEntity(int currentEntityId, string title, string content, int authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteUserEntityWithId(int currentEntityId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetUserEntityById(int entityIdForSearch)
+        {
+            return this.AllUsersList.Find(user => user.CurrentUserId.Equals(entityIdForSearch));
         }
     }
 }

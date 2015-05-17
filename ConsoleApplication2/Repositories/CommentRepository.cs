@@ -18,11 +18,6 @@ namespace ConsoleApplication2
             return this.m_allCommentsList;
         }
 
-        public void AddComment(int articleIdInList, string commentText)
-        {
-            this.m_allCommentsList.Add(new Comment(articleIdInList, commentText));
-        }
-
         public void InitializeRepository()
         {
             this.m_allCommentsList.Add(new Comment(2, 0, "content comment 0 article 2"));
@@ -48,12 +43,23 @@ namespace ConsoleApplication2
             throw new System.NotImplementedException();
         }
 
+        public void AddNewEntity(int articleIdInList, int rewiewOrCommentIdInList, int idCommentAuthor, string userTag, string content)
+        {
+            this.m_allCommentsList.Add(new Comment(articleIdInList, rewiewOrCommentIdInList, idCommentAuthor, userTag, content));
+           
+        }
+
         public void DeleteEntityWithId(int currentEntityId)
         {
             throw new System.NotImplementedException();
         }
 
         public Comment GetEntityById(int entityIdForSearch)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        internal void AddComment(Comment comment)
         {
             throw new System.NotImplementedException();
         }

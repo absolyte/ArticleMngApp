@@ -7,8 +7,6 @@ using ConsoleApplication2;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
-    
-
     public class ArticleRepository : IEntityRepository<Article>
     {
         private List<Article> m_allArticlesList;

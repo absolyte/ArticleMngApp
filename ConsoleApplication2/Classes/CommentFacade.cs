@@ -22,15 +22,14 @@ namespace ConsoleApplication2
             return m_commentRepositoryUnit.GetAllEntities();
         }
 
-
-        internal void AddComment(int articleIdInList, string commentText)
-        {
-            m_commentRepositoryUnit.AddComment(articleIdInList, commentText);
-        }
-
-        internal void InitializeData()
+        public void InitializeData()
         {
             m_commentRepositoryUnit.InitializeRepository();
+        }
+
+        public void AddComment(int p1, int p2, int p3, string p4, string p5)
+        {
+            m_commentRepositoryUnit.AddNewEntity(p1, p2, p3, p4, p5);
         }
     }
 
