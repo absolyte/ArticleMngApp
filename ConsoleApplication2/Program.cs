@@ -37,8 +37,8 @@ Consider indicating constraints placed on a type parameter in the name of parame
             printer1.Initialize();
             printer1.PrintArticleTitles();
             printer1.PrintAverageRatingForEveryArticle();
-            printer1.RefreshAverageRating();
-            printer1.PrintAverageRatingForEveryArticle();
+            // printer1.RefreshAverageRating();
+           // printer1.PrintAverageRatingForEveryArticle();
             printer1.ChangeArticles();
             printer1.PrintArticleById(80);
             printer1.PrintRandomArticle();

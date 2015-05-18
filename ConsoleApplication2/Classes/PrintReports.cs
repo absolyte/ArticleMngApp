@@ -15,12 +15,17 @@ namespace FLS.ArticleManager.ConsoleApplication2
         private UserFacade m_userFacade;
         private AuthorFacade m_authorFacade;
 
+        private ArticleFacade GetArticleFacadeUnit
+        {
+            get { return m_articleFacade; }
+        }
+
         public ReviewFacade GetReviewFacadeUnit
         {
             get { return m_reviewFacade; }
         }
 
-        public CommentFacade GetCommentFacadeUnit
+        private CommentFacade GetCommentFacadeUnit
         {
             get { return m_commentFacade; }
         }
@@ -41,7 +46,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
             Console.WriteLine(messageString);
         }
 
-        public static void PrintDelimiter()
+        private static void PrintDelimiter()
         {
             Console.WriteLine("---------------------------------------\n");
         }
@@ -57,10 +62,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         }
 
-        public ArticleFacade GetArticleFacadeUnit
-        {
-            get { return m_articleFacade; }
-        }
+        
 
         public void PrintArticleTitles()
         {
@@ -116,24 +118,16 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         public void PrintAverageRatingForEveryArticle()
         {
-                DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
+               // DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
                 PrintReports.PrintDelimiter();
                 PrintReports.PrintMessage("Article Title    Article average rating\n");
             foreach (Article articleToPrintAverageRating in GetArticleFacadeUnit.GetAllArticlesList())
                 {
+                    articleToPrintAverageRating.SetAverageRating(m_articleFacade.CalculateAverageRating(articleToPrintAverageRating.CurrentArticleId,m_reviewFacade.GetAllEntities()));
                     articleToPrintAverageRating.ShowAverageRating();
                 }
                 Console.WriteLine("\nSpecific average rating -1 means that rating not yet specified or calculated for this article. Please run articleFacade.RefreshAverageRatingForAllArticles method");
                 PrintReports.PrintDelimiter();
-        }
-
-        public void RefreshAverageRating()
-        {
-            DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
-            foreach (Article articleToRefreshRating in GetArticleFacadeUnit.GetAllArticlesList())
-            {
-               articleToRefreshRating.SetAverageRating(GetArticleFacadeUnit.CalculateAverageRating(articleToRefreshRating.CurrentArticleId,GetReviewFacadeUnit.GetAllEntities()));
-            }
         }
 
         public void ChangeArticles()
@@ -235,6 +229,8 @@ namespace FLS.ArticleManager.ConsoleApplication2
                this.PrintCommentsForArticleWithId(articleToPrintComments.CurrentArticleId);
            }
        }
+
+      
     }
     
 }

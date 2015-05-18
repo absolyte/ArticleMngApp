@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using ConsoleApplication2.Classes;
 
 namespace FLS.ArticleManager.ConsoleApplication2
@@ -26,7 +27,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
         {
             this.m_articleRepositoryUnit.InitializeRepository();
         }
-
+        
        public float CalculateAverageRating(int idArticleRatingToCalculate, List<Review> fullListOfReviews)
         {
           //  DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
