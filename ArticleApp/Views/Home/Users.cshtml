@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ArticleApp.Models.UserModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Users</title>
+</head>
+<body>
+    <div>
+        <h3>This view page to have an ability to manage users of site</h3>
+        <table>
+            <tr class="header">
+                <td><p>Age</p></td>
+                <td><p>First Name</p></td>
+                <td><p>Last Name</p></td>
+                <td><p>Type of user</p></td>
+            </tr>
+            @foreach (ArticleApp.Models.UserModel tmpModel in Model)
+            {
+                <tr>
+                    <td><p>@tmpModel.Age</p></td>
+                    <td><p>@tmpModel.FirstName</p></td>
+                    <td><p>@tmpModel.LastName</p></td>
+                    <td><p>@tmpModel.TypeOfUser</p></td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
+
+
+

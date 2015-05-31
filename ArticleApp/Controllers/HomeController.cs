@@ -9,23 +9,30 @@ namespace ArticleApp.Controllers
 {
     public class HomeController : Controller
     {
+        UserContext userDbContext = new UserContext();
         public ActionResult Index()
         {
             return View(ArticleDataStorage.Instance.GetAllArticles());
         }
 
-        public ActionResult About()
+        public ActionResult Users()
         {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
+            ViewBag.Message = "Page to manage users";
+            return View(userDbContext.Users);
         }
 
-        public ActionResult Contact()
+        /*public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+        */
+        protected override void Dispose(bool disposing)
+        {
+            userDbContext.Dispose();
+            base.Dispose(disposing);
+        }
+
     }
 }
