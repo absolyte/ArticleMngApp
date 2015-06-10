@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Reflection;
 using ConsoleApplication2;
 using ConsoleApplication2.Classes;
+using System.Text;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
-   public class PrintReports
+    public class PrintReports
     {
         private ReviewFacade m_reviewFacade;
         private CommentFacade m_commentFacade;
@@ -15,12 +16,14 @@ namespace FLS.ArticleManager.ConsoleApplication2
         private UserFacade m_userFacade;
         private AuthorFacade m_authorFacade;
 
+        private StringBuilder m_sbString = new StringBuilder();
+
         private ArticleFacade GetArticleFacadeUnit
         {
             get { return m_articleFacade; }
         }
 
-        public ReviewFacade GetReviewFacadeUnit
+        private ReviewFacade GetReviewFacadeUnit
         {
             get { return m_reviewFacade; }
         }
@@ -62,8 +65,6 @@ namespace FLS.ArticleManager.ConsoleApplication2
 
         }
 
-        
-
         public void PrintArticleTitles()
         {
             DiagnosticUtility.DiagnosticOutput(MethodBase.GetCurrentMethod().Name, this.ToString());
@@ -82,7 +83,12 @@ namespace FLS.ArticleManager.ConsoleApplication2
             PrintReports.PrintDelimiter();
             Article articleToPrint = GetArticleFacadeUnit.GetAllArticlesList().Find(article => article.CurrentArticleId.Equals(idArticleToPrint));
             PrintReports.PrintMessage("Article Title    Article content\n");
-            PrintReports.PrintMessage(articleToPrint.Title + "  " + articleToPrint.Content);
+            m_sbString.Clear();
+            m_sbString.Append(articleToPrint.Title);
+            m_sbString.Append(" ");
+            m_sbString.Append(articleToPrint.Content);
+
+            PrintReports.PrintMessage(m_sbString.ToString());
             PrintReports.PrintDelimiter();
         }
 
@@ -93,13 +99,18 @@ namespace FLS.ArticleManager.ConsoleApplication2
             Article articleToPrint = GetArticleFacadeUnit.GetRandomArticle();
             if (articleToPrint == null)
             {
-                PrintReports.PrintMessage("no title with incoming random ID");
+                PrintReports.PrintMessage("no title with generated incoming random ID");
                 PrintReports.PrintDelimiter();
             }
             else 
             {
                 PrintReports.PrintMessage("Article Title    Article content\n");
-                PrintReports.PrintMessage(articleToPrint.Title + "  " + articleToPrint.Content);
+                m_sbString.Clear();
+                m_sbString.Append(articleToPrint.Title);
+                m_sbString.Append(" ");
+                m_sbString.Append(articleToPrint.Content);
+                PrintReports.PrintMessage(m_sbString.ToString());
+                
                 PrintReports.PrintDelimiter();
             }
         }
@@ -111,7 +122,11 @@ namespace FLS.ArticleManager.ConsoleApplication2
             PrintReports.PrintMessage("Article Title    Article content\n");
             foreach (Article articleToPrint in GetArticleFacadeUnit.GetAllArticlesList())
             {
-                PrintReports.PrintMessage(articleToPrint.Title + "          " + articleToPrint.Content);
+                m_sbString.Clear();
+                m_sbString.Append(articleToPrint.Title);
+                m_sbString.Append(" ");
+                m_sbString.Append(articleToPrint.Content);
+                PrintReports.PrintMessage(m_sbString.ToString());
             }
             PrintReports.PrintDelimiter();
         }
@@ -126,7 +141,7 @@ namespace FLS.ArticleManager.ConsoleApplication2
                     articleToPrintAverageRating.SetAverageRating(m_articleFacade.CalculateAverageRating(articleToPrintAverageRating.CurrentArticleId,m_reviewFacade.GetAllEntities()));
                     articleToPrintAverageRating.ShowAverageRating();
                 }
-                Console.WriteLine("\nSpecific average rating -1 means that rating not yet specified or calculated for this article. Please run articleFacade.RefreshAverageRatingForAllArticles method");
+                Console.WriteLine("\nSpecific average rating -1 means that rating not yet specified or calculated for this article.");
                 PrintReports.PrintDelimiter();
         }
 
@@ -168,10 +183,16 @@ namespace FLS.ArticleManager.ConsoleApplication2
                         PrintReports.PrintMessage(commentToPrint.Content);
                     }
                  }
+
                 if (commentFlag == 0)
                 {
-                    PrintReports.PrintMessage("Article Title=" + GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveComments).Title + "doesn't have comments");
+                    m_sbString.Clear();
+                    m_sbString.Append("Article Title=");
+                    m_sbString.Append(GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveComments).Title);
+                    m_sbString.Append("doesn't have comments");
+                    PrintReports.PrintMessage(m_sbString.ToString());
                 }
+
                 PrintReports.PrintMessage("\n");
             }
             else
@@ -189,25 +210,40 @@ namespace FLS.ArticleManager.ConsoleApplication2
            PrintReports.PrintMessage(MethodBase.GetCurrentMethod().Name);
            if (GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveCommenters) != null)
            {
-               PrintReports.PrintMessage("Article Title=" + GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveCommenters).Title);
-               
+               m_sbString.Clear();
+               m_sbString.Append("Article Title=");
+               m_sbString.Append(GetArticleFacadeUnit.GetArticleById(articleIdForWhichToRetrieveCommenters).Title);
+               PrintReports.PrintMessage(m_sbString.ToString());
                foreach (Comment commentToGetCommenters in GetCommentFacadeUnit.GetAllCommentsList())
                {
                    if (commentToGetCommenters.ArticleIdInList == articleIdForWhichToRetrieveCommenters)
                    {
                        if (commentToGetCommenters.userFlag == "Admin")
                        {
-                           System.Console.WriteLine(this.m_adminFacade.GetAdminById(commentToGetCommenters.userId).FirstName + "\n" + this.m_adminFacade.GetAdminById(commentToGetCommenters.userId).LastName);
-                       }
+
+                           m_sbString.Clear();
+                           m_sbString.Append(this.m_adminFacade.GetAdminById(commentToGetCommenters.userId).FirstName);
+                           m_sbString.Append("\n");
+                           m_sbString.Append(this.m_adminFacade.GetAdminById(commentToGetCommenters.userId).LastName);
+                           PrintReports.PrintMessage(m_sbString.ToString());
+                        }
 
                       if (commentToGetCommenters.userFlag == "Author")
                       {
-                           System.Console.WriteLine(this.m_authorFacade.GetAuthorById(commentToGetCommenters.userId).FirstName + "\n" + this.m_authorFacade.GetAuthorById(commentToGetCommenters.userId).LastName);
+                          m_sbString.Clear();
+                          m_sbString.Append(this.m_authorFacade.GetAuthorById(commentToGetCommenters.userId).FirstName);
+                          m_sbString.Append("\n");
+                          m_sbString.Append(this.m_authorFacade.GetAuthorById(commentToGetCommenters.userId).LastName);
+                          PrintReports.PrintMessage(m_sbString.ToString());
                        }
                    
                        if (commentToGetCommenters.userFlag == "User")
                        {
-                           System.Console.WriteLine(this.m_userFacade.GetUserById(commentToGetCommenters.userId).FirstName + "\n" + this.m_userFacade.GetUserById(commentToGetCommenters.userId).LastName);
+                           m_sbString.Clear();
+                           m_sbString.Append(this.m_userFacade.GetUserById(commentToGetCommenters.userId).FirstName);
+                           m_sbString.Append("\n");
+                           m_sbString.Append(this.m_userFacade.GetUserById(commentToGetCommenters.userId).LastName);
+                           PrintReports.PrintMessage(m_sbString.ToString());
                        }
 
                    }
@@ -218,7 +254,6 @@ namespace FLS.ArticleManager.ConsoleApplication2
                System.Console.WriteLine("Article with incoming ID={0} wasn't found", articleIdForWhichToRetrieveCommenters);
            }
            PrintReports.PrintDelimiter();
-
        }
 
 
