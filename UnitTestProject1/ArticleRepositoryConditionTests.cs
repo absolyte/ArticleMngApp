@@ -5,8 +5,45 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTestProject1
 {
     using System.Collections.Generic;
-
     using ConsoleApplication2;
+    using ConsoleApplication2.BuisnessModel.business_interface;
+    
+    using NMock;
+    using NUnit.Framework;
+    
+
+    [TestFixture]
+    public class ArticleFacadeTest
+    {
+        private Mockery m_mocks;
+        private IArticleRepository m_mockArticleRepositoryEntity;
+        private IEntityFacade articleEntityFacade;
+
+        [SetUp]
+        public void SetUp()
+        {
+            m_mocks = new Mockery();
+            m_mockArticleRepositoryEntity = m_mocks.NewMock<IArticleRepository>();
+            articleEntityFacade = new ArticleFacade(m_mockArticleRepositoryEntity);
+        }
+        
+        [Test]
+        public void NmockGetArticleById80()
+        {
+            Expect.Once.On(m_mockArticleRepositoryEntity).
+                Method("GetEntityById").
+                With(80).
+                Will(Return.Value(2.20));
+
+            Article NMockReturnedArticle = articleEntityFacade.GetArticleById(80);
+
+            Assert.AreEqual(80, NMockReturnedArticle.CurrentArticleId);
+            m_mocks.VerifyAllExpectationsHaveBeenMet();
+        }
+    }
+
+   
+
 
     [TestClass]
     public class ArticleRepositoryConditionTests

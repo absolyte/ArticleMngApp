@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuisnessModel\business interface\IArticleRepository.cs" />
+    <Compile Include="BuisnessModel\business interface\IEntityFacade.cs" />
     <Compile Include="BuisnessModel\business objects\AbstractUser.cs" />
     <Compile Include="BuisnessModel\business objects\Admin.cs" />
     <Compile Include="BuisnessModel\business interface\AdminFacade.cs" />

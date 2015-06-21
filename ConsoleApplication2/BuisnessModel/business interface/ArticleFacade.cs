@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ConsoleApplication2.Classes;
+using ConsoleApplication2.BuisnessModel.business_interface;
 
 namespace FLS.ArticleManager.ConsoleApplication2
 {
     using global::ConsoleApplication2;
 
-    public class ArticleFacade
+    public class ArticleFacade : IEntityFacade
     {
         private IEntityRepository<Article> m_articleRepositoryUnit;
-       
+        
+        //repository item for NMock
+        private IArticleRepository m_articleRepositoryUnitNmock;
+
         public ArticleFacade()
         {
            this.m_articleRepositoryUnit = new ArticleRepository();
@@ -23,6 +27,12 @@ namespace FLS.ArticleManager.ConsoleApplication2
             m_articleRepositoryUnit = repository;
         }
 
+        //DI for NMock
+        public ArticleFacade(IArticleRepository repository)
+        {
+            m_articleRepositoryUnitNmock = repository;
+        }
+        
         public void InitializeData()
         {
             this.m_articleRepositoryUnit.InitializeRepository();
@@ -80,9 +90,5 @@ namespace FLS.ArticleManager.ConsoleApplication2
             this.m_articleRepositoryUnit.DeleteEntityWithId(currentArticleId);
         }
 
-        public static int Add(int a, int b)
-        {
-            return a + b;
         }
-    }
 }
