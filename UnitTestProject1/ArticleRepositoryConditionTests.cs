@@ -9,9 +9,9 @@ namespace UnitTestProject1
     using ConsoleApplication2.BuisnessModel.business_interface;
     
     using NMock;
-    using NUnit.Framework;
+    //using NUnit.Framework;
     
-
+    /**
     [TestFixture]
     public class ArticleFacadeTest
     {
@@ -42,7 +42,7 @@ namespace UnitTestProject1
         }
     }
 
-   
+   **/
 
 
     [TestClass]
